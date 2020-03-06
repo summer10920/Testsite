@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":360,"display":"post","padding":20,"offset":20,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CSS的課程教材一共分為五篇章節文章介紹，都是基礎的從零開始的課程並跟隨CSS3的觀念技巧，完全沒學過的人可以跟著學習，曾碰過CSS的人也可以跳著章節選擇性參考。CSS是很基本的技術一定要會，任何的排版與外觀技巧都是透過CSS完成。學會CSS能幫助你在任何Web平台(部落格、套版、框架主題、架站包…等等)上做輕度的視覺修改，更厲害的人可以進入設計師領域。 CSS的基礎觀念CSS是一種針對HTML標">
+  <meta name="description" content="CSS的課程教材一共分為五篇章節文章介紹，都是基礎的從零開始的課程並跟隨CSS3的觀念技巧，完全沒學過的人可以跟著學習，曾碰過CSS的人也可以跳著章節選擇性參考。CSS是很基本的技術一定要會，任何的排版與外觀技巧都是透過CSS完成。學會CSS能幫助你在任何Web平台(部落格、套版、框架主題、架站包…等等)上做輕度的視覺修改，更厲害的人可以進入設計師領域。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[基礎課程] CSS教學(一)：觀念與選擇器">
 <meta property="og:url" content="http://summer10920.github.io/2020/03-06/css-baseclass-1/">
 <meta property="og:site_name" content="洛奇的邪惡組織手札">
-<meta property="og:description" content="CSS的課程教材一共分為五篇章節文章介紹，都是基礎的從零開始的課程並跟隨CSS3的觀念技巧，完全沒學過的人可以跟著學習，曾碰過CSS的人也可以跳著章節選擇性參考。CSS是很基本的技術一定要會，任何的排版與外觀技巧都是透過CSS完成。學會CSS能幫助你在任何Web平台(部落格、套版、框架主題、架站包…等等)上做輕度的視覺修改，更厲害的人可以進入設計師領域。 CSS的基礎觀念CSS是一種針對HTML標">
+<meta property="og:description" content="CSS的課程教材一共分為五篇章節文章介紹，都是基礎的從零開始的課程並跟隨CSS3的觀念技巧，完全沒學過的人可以跟著學習，曾碰過CSS的人也可以跳著章節選擇性參考。CSS是很基本的技術一定要會，任何的排版與外觀技巧都是透過CSS完成。學會CSS能幫助你在任何Web平台(部落格、套版、框架主題、架站包…等等)上做輕度的視覺修改，更厲害的人可以進入設計師領域。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-03-06T07:55:32.000Z">
-<meta property="article:modified_time" content="2020-03-06T14:13:13.628Z">
+<meta property="article:modified_time" content="2020-03-06T15:04:56.925Z">
 <meta property="article:author" content="Loki Jiang">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="html&amp;css">
@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-03-06 15:55:32 / 修改時間：22:13:13" itemprop="dateCreated datePublished" datetime="2020-03-06T15:55:32+08:00">2020-03-06</time>
+              <time title="創建時間：2020-03-06 15:55:32 / 修改時間：23:04:56" itemprop="dateCreated datePublished" datetime="2020-03-06T15:55:32+08:00">2020-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,6 +212,8 @@
 
       
         <p>CSS的課程教材一共分為五篇章節文章介紹，都是基礎的從零開始的課程並跟隨CSS3的觀念技巧，完全沒學過的人可以跟著學習，曾碰過CSS的人也可以跳著章節選擇性參考。CSS是很基本的技術一定要會，任何的排版與外觀技巧都是透過CSS完成。學會CSS能幫助你在任何Web平台(部落格、套版、框架主題、架站包…等等)上做輕度的視覺修改，更厲害的人可以進入設計師領域。</p>
+<a id="more"></a>
+
 <h1 id="CSS的基礎觀念"><a href="#CSS的基礎觀念" class="headerlink" title="CSS的基礎觀念"></a>CSS的基礎觀念</h1><p>CSS是一種針對HTML標籤在實體具現化之後的外觀調整工作，現在以CSS3為主技術。之前HTML有提到，每個HTML標籤視為盒子(Box)模式且區分區塊、行內兩種模式。CSS需要額外編寫並宣告與HTML的選擇關係，這樣瀏覽器才會知道哪個標籤該用怎樣的CSS外觀。</p>
 <div class="note success">
             <p><strong>跟著做</strong><br>使用chrome瀏覽器，隨意找個網站按下 <kbd>F12</kbd> ，滑鼠隨意點選 <kbd>Elements</kbd> 分籤內的任何body內之標籤，接著旁側的 <kbd>Style</kbd> 分籤就是該標籤的外觀樣式(CSS Style)。</p>
