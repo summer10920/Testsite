@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":370,"display":"post","padding":20,"offset":20,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CSS 的最後一篇基本課程，收錄一些偏於動態或視覺效果的 CSS 屬性，也提及到 CSS 動畫與轉場的動態播放，以及跨平台十分重要的 Media Query 媒體查詢。這些都算是能讓 CSS 更生動豐富且靈活，使網頁體驗上更有感受。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[基礎課程] CSS 教學（五）：變形、轉場、動畫、媒體查詢">
+<meta property="og:url" content="http://summer10920.github.io/2020/03-17/css-baseclass-5/">
+<meta property="og:site_name" content="洛奇的邪惡組織手札">
+<meta property="og:description" content="CSS 的最後一篇基本課程，收錄一些偏於動態或視覺效果的 CSS 屬性，也提及到 CSS 動畫與轉場的動態播放，以及跨平台十分重要的 Media Query 媒體查詢。這些都算是能讓 CSS 更生動豐富且靈活，使網頁體驗上更有感受。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-03-17T10:31:49.000Z">
+<meta property="article:modified_time" content="2020-03-17T14:36:30.000Z">
+<meta property="article:author" content="Loki Jiang">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="html&amp;css">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://summer10920.github.io/2020/03-17/css-baseclass-5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>[基礎課程] CSS 教學（五）：變形、轉場、動畫、媒體查詢 | 洛奇的邪惡組織手札</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146423952-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-146423952-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洛奇的邪惡組織手札</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">I am WebDeveloper!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">6</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/summer10920" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://summer10920.github.io/2020/03-17/css-baseclass-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/loki_img.jpg">
+      <meta itemprop="name" content="Loki Jiang">
+      <meta itemprop="description" content="Time waits for no oneヽ(｀Д´)ﾉ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洛奇的邪惡組織手札">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [基礎課程] CSS 教學（五）：變形、轉場、動畫、媒體查詢
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-03-17 18:31:49 / 修改時間：22:36:30" itemprop="dateCreated datePublished" datetime="2020-03-17T18:31:49+08:00">2020-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%B7%E8%A8%93%E6%95%99%E6%9D%90/" itemprop="url" rel="index"><span itemprop="name">職訓教材</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>CSS 的最後一篇基本課程，收錄一些偏於動態或視覺效果的 CSS 屬性，也提及到 CSS 動畫與轉場的動態播放，以及跨平台十分重要的 Media Query 媒體查詢。這些都算是能讓 CSS 更生動豐富且靈活，使網頁體驗上更有感受。</p>
+<a id="more"></a>
+
+<h1 id="變形-Transform"><a href="#變形-Transform" class="headerlink" title="變形 Transform"></a>變形 Transform</h1><p>必須作用在 block、inline-block（包含 flex 彈性盒）上。CSS 變形特點不會影響周遭其他的元素，舉例旋轉一個元素 45deg，有可能會壓在上下左右的元素之上。變形的值為函數並歸類出四種類型。</p>
+<p>同時間使用多組函式時，你應該用空格進行多組函式值，例如<code>transform: translate(50%, 50%) rotate(45deg);</code>。</p>
+<div class="note primary">
+            <p><strong>素材準備：準備代碼以方便下階段的教學練習</strong> </p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--本篇利用 ::after 模擬出變形差異比較--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  body&#123;</span><br><span class="line"><span class="css">    <span class="selector-tag">margin</span><span class="selector-pseudo">:0</span>;</span></span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    height: 100vh;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#FF0000</span>;</span></span><br><span class="line">    text-align: center;</span><br><span class="line">    color: white;</span><br><span class="line">    line-height: 100px;</span><br><span class="line">    position: relative;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.box</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line">    content: "transform";</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#0000FF</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">opacity</span>: 0<span class="selector-class">.3</span>;</span></span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box transform"</span>&gt;</span>Befault<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          </div>
+
+<h2 id="translate-平移"><a href="#translate-平移" class="headerlink" title="translate 平移"></a>translate 平移</h2><ul>
+<li>translateX()、translateY() 稱為「平移函式」能左右或上下移動，但不能沿 z 軸前後移動。</li>
+<li>接受用長度或百分比表示距離，px、em、%，正值往右或上，負值為往左或下。</li>
+<li>使用 translate(x,y) 能同時對 x 軸與 y 軸平移，但如果不寫 y 值則預設為 0，也就 translate(2em) 等同 translateX(2em)。</li>
+<li>如果變形函數中<code>使用百分比 (%) 做為移動的數據，以元素本身的 box 尺寸為百分比計算基準</code>。注意，這和 CSS box 以容納區 (containing block) 尺寸為計算基準不同。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.transform</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="comment">/* transform: translate(50px, 50px); */</span></span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">50%</span>, <span class="number">50%</span>);</span><br><span class="line">  <span class="comment">/* 若是某 x,y 值不需設定，一定要設定成 0 */</span></span><br><span class="line">  <span class="comment">/* transform: translate(0, 100px); */</span></span><br><span class="line">  <span class="comment">/* transform: translate(100px, 0); */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="scale-縮放"><a href="#scale-縮放" class="headerlink" title="scale 縮放"></a>scale 縮放</h2><ul>
+<li>能依據指定值縮放大小，用<code>負值會呈現倒影型態</code>。數值是倍數，舉例 scaleX(2) 變成轉換前的兩倍，scaleY(0.5) 讓元素高度減半，<code>無法使用百分比</code>。</li>
+<li>可同時讓兩軸縮放，舉例 scale(2,0.5) 會讓元素縮放兩倍寬 (X)，一半高 (Y)。如果只填一個值 就會等同樣比例縮放兩軸。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.transform</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">3.5</span>);</span><br><span class="line">  <span class="comment">/* transform: scale(3.5, 1.5); */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="rotate-旋轉"><a href="#rotate-旋轉" class="headerlink" title="rotate 旋轉"></a>rotate 旋轉</h2><p>可三維空間分別控制 rotateX()、rotateY()、rotateZ()。若單一使用 rotate() 則是二維空間順時旋轉，可負值且單位為 deg（degree）。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.transform</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">100%</span>) <span class="built_in">rotate</span>(<span class="number">45deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="skew-歪斜"><a href="#skew-歪斜" class="headerlink" title="skew 歪斜"></a>skew 歪斜</h2><ul>
+<li>skewX()、skewY()、skew()，有正、負值，skew(30deg)，記得要加單位 deg，</li>
+<li>skew() 第一個數值是 x 的歪斜角， 接著才是 y 的歪斜角，如果省略 y 歪斜角，就視為 0。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.transform</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">100%</span>) <span class="built_in">skew</span>(<span class="number">45deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="transform-origin-變形點"><a href="#transform-origin-變形點" class="headerlink" title="transform-origin 變形點"></a>transform-origin 變形點</h2><ul>
+<li>另外獨立的屬性指定，transform-origin 可以設定元素上的原點，元素旋轉時會對著這個原點旋轉</li>
+<li>為複合屬性，先指定 x 水平， y 垂直，最後是選填的 z 軸方向，彼此之間以空格間隔。</li>
+<li>數值可以是單位 em、px、%、left、right、top、bottom；center。</li>
+<li>z 軸只能用長度值（一般會是 px)，不能夠使用關鍵字與百分比值。</li>
+<li>預設值為 50% 50%(box 中心點），若省略 Y 值不寫將視為 center (50%) 。</li>
+</ul>
+<blockquote>
+<p>transform-origin 對於使用 translate 平移沒有效果。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.transform</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">30deg</span>);</span><br><span class="line">  <span class="comment">/* 以下四個設定都一樣 ，只設定一個值，另一值會被認定 center*/</span></span><br><span class="line">  <span class="attribute">transform-origin</span>: center center;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform-origin</span>: center;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note warning">
+            <p><strong>科普知識：3D 版的 Transform</strong><br>CSS 另外還有的 3D 變形控制，這需要額外的進階深入介紹沒有加入本篇教材，有機會另開文章解說。簡單來說：</p><ul><li>translateZ() 數值為長度值（不允許百分比），需搭配 perspective() 才能做出維度空間。</li><li>translate3d() 設定少於 3 個數值時並不會帶入預設值，一定要 3 個數值。</li><li>scale3d() 設定數值跟 translate3d 一樣要 3 個數值。</li></ul>
+          </div>
+
+<h1 id="轉場-Transition"><a href="#轉場-Transition" class="headerlink" title="轉場 Transition"></a>轉場 Transition</h1><p>轉場是指從何開始到哪裡結束之過程。你需要指定出開始與結束兩種不同的樣式屬性。舉例來說：</p>
+<ol>
+<li>初始樣式為 background:red，結束樣式為 background:blue。</li>
+<li>瀏覽器會將兩個樣式間的變化形成動畫過渡效果。</li>
+<li>指定觸發時機行為，藉由 CSS 的擬類別觸發動畫（最常見的是：hover)。</li>
+<li>transition 寫在觸發前才可來回轉場，寫在觸發後只會轉場過去，無法變回。</li>
+</ol>
+<p>轉場可以分為四個屬性來指定，或者可以用縮寫（通常）來表示：</p>
+<table>
+<thead>
+<tr>
+<th>屬性</th>
+<th>預設值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>transition-property</code></td>
+<td>all</td>
+<td>指定哪些 CSS 屬性受過渡轉場效果。沒指定到的屬性會瞬間變化沒有效果</td>
+</tr>
+<tr>
+<td><code>transition-duration</code></td>
+<td>0</td>
+<td>指定該轉場需幾秒內完成，單位為 s</td>
+</tr>
+<tr>
+<td><code>transition-timing-function</code></td>
+<td>ease</td>
+<td>指定過渡為哪種漸變函式，一共有 6 種過渡效果</td>
+</tr>
+<tr>
+<td><code>transition-delay</code></td>
+<td>0</td>
+<td>指定幾秒過後才執行轉場，單位為 s</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>縮寫方式 <code>transition</code>: <code>property</code> <code>duration</code> <code>timing-function</code> <code>delay</code>; </p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 縮寫：屬性    持續時間      速度曲線    延遲時間*/</span></span><br><span class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 1<span class="selector-tag">s</span> <span class="selector-tag">ease-in</span> 0<span class="selector-tag">s</span>;</span><br><span class="line"><span class="comment">/* 簡單寫法 */</span></span><br><span class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 2<span class="selector-tag">s</span>; <span class="comment">/*default is append ease 0s */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="單屬性或多屬性"><a href="#單屬性或多屬性" class="headerlink" title="單屬性或多屬性"></a>單屬性或多屬性</h2><p>可指定單某 CSS 屬性對象做轉場參數，若需要多屬性則連續設定轉場參數並使用<kbd>,</kbd>分開。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">transition-property（預設 all）</span></span><br><span class="line"><span class="comment">transition-duration（預設 0s）</span></span><br><span class="line"><span class="comment">transition-timing-function（ease 預設、ease-in、linear、ease-out、ease-in-out）</span></span><br><span class="line"><span class="comment">transition-delay（預設 0s）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 縮寫且單筆 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">transition</span>: width <span class="number">1s</span> ease <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 縮寫且多筆 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">transition</span>: transform <span class="number">1s</span> ease, border-radius <span class="number">1s</span> ease-out;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 完整列出且多筆，順序需相對應 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">transition-property</span>: color, background-color, border-color;</span><br><span class="line">  <span class="attribute">transition-duration</span>: <span class="number">0.25s</span>, <span class="number">0.75s</span>, <span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">transition-timing-function</span>: ease, ease-in, linear;</span><br><span class="line">  <span class="attribute">transition-delay</span>: <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 或是以下寫法 */</span></span><br><span class="line">  <span class="attribute">transition</span>: color <span class="number">0.25s</span> ease <span class="number">0</span>, background-color <span class="number">0.75s</span> ease-in <span class="number">0</span>, border-color <span class="number">2s</span> linear <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>transition-property 可使用屬性：<br><br>rotate, scale, translate, skew, width, height, color, background-color, border-color, border-width, font-size, line-height, letter-spacing, word-spacing, margin, padding, opacity, top, right, bottom, left</p>
+</blockquote>
+<h2 id="範例：指定屬性轉場"><a href="#範例：指定屬性轉場" class="headerlink" title="範例：指定屬性轉場"></a>範例：指定屬性轉場</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* color */</span></span><br><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">  <span class="attribute">transition</span>: color <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* width */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">transition</span>: width <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="範例：多屬性效果"><a href="#範例：多屬性效果" class="headerlink" title="範例：多屬性效果"></a>範例：多屬性效果</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f55</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">360deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#1c1</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">0deg</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 多屬性設定 */</span></span><br><span class="line">  <span class="attribute">transition-property</span>: width, height, transform, background-color;</span><br><span class="line">  <span class="attribute">transition-duration</span>: <span class="number">0.5s</span>, <span class="number">0.5s</span>, <span class="number">0.5s</span>, <span class="number">0.5s</span>;</span><br><span class="line">  <span class="attribute">transition-timing-function</span>: ease, ease, ease, ease;</span><br><span class="line">  <span class="attribute">transition-delay</span>: <span class="number">0.5s</span>, <span class="number">1s</span>, <span class="number">1.5s</span>, <span class="number">2s</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 多屬性縮寫 */</span></span><br><span class="line">  <span class="comment">/* transition: width 0.5s ease 0.5s, height 0.5s ease 1s, transform 0.5s ease 1.5s, background 0.5s ease 2s; */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="動畫-Animation"><a href="#動畫-Animation" class="headerlink" title="動畫 Animation"></a>動畫 Animation</h1><p>轉場跟動畫不太相同的是，前者是有個觸發條件寫在某選擇器上（通常是：hover)，當偵測到選擇器成立時（觸發）會進行轉場；後者是直接宣告一個動畫播放即可。建立動畫的步驟為：</p>
+<ol>
+<li>建立一組關鍵影格（keyframe），包含了動畫名稱、起始 from 之屬性為何、結束 to 之屬性為何。</li>
+<li>套用動畫到元素，一旦定義完成，可以套用該動畫到頁面上任意數量的元素，甚至可以為每個元素單獨設定時間、延遲和其他動畫屬性。</li>
+<li>也可以建立一個 class，只做動畫表現。</li>
+<li>使用到 top、right、bottom、left 作為動畫 keyfram 裡面的屬性時，要先確認方框元素有沒有 position。</li>
+<li>如果將 animation-delay 延遲播放時間設定為「負值」，例如 -1s、-2s，得到的結果就「不會延遲，而是快轉」，假設一段動畫 animation-duration 要 5 秒，animation-delay 設定為 -2s，那麼動畫將會直接從第二秒的位置開始播放，播放三秒後停止 ( 類似 5-2=3 的概念 )。</li>
+</ol>
+<h2 id="動畫屬性"><a href="#動畫屬性" class="headerlink" title="動畫屬性"></a>動畫屬性</h2><table>
+<thead>
+<tr>
+<th>屬性</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>animation-name</td>
+<td>動畫名稱</td>
+</tr>
+<tr>
+<td>animation-duration</td>
+<td>動畫持續時間，預設 0，單位 s 或 ms。</td>
+</tr>
+<tr>
+<td>animation-timing-function</td>
+<td>動畫加速度函式，預設 ease。其他還有： linear、ease-in、ease-out、ease-in-out</td>
+</tr>
+<tr>
+<td>animation-delay</td>
+<td>動畫延遲播放時間，預設 0，單位 s 或 ms。</td>
+</tr>
+<tr>
+<td>animation-iteration-count</td>
+<td>動畫播放次數，預設 1。其他還有 infinite。</td>
+</tr>
+<tr>
+<td>animation-direction</td>
+<td>動畫播放方向，預設 normal。其他還有 reverse、alternate、alternate-reverse。</td>
+</tr>
+<tr>
+<td>animation-fill-mode</td>
+<td>動畫播放前後模式，預設 none。其他還有 forwards、backwards、both。</td>
+</tr>
+<tr>
+<td>animation-play-state</td>
+<td>動畫播放或暫停狀態，預設 running。其他還有 paused。</td>
+</tr>
+</tbody></table>
+<h3 id="縮寫方式"><a href="#縮寫方式" class="headerlink" title="縮寫方式"></a>縮寫方式</h3><p>動畫縮寫，名稱和持續時間是必要，其他數值可以省略，在寫樣是時請使用動畫縮寫。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">animation:name duration | timing-function | delay | iteration-count | direction | fill-mode | play-state;</span><br></pre></td></tr></table></figure>
+
+<h2 id="範例效果"><a href="#範例效果" class="headerlink" title="範例效果"></a>範例效果</h2><h3 id="基本範例-1"><a href="#基本範例-1" class="headerlink" title="基本範例 1"></a>基本範例 1</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="comment">/* 宣告關鍵影格為動畫、動畫名稱、開始、結束 */</span></span></span><br><span class="line"><span class="css">  <span class="keyword">@keyframes</span> animate &#123;</span></span><br><span class="line">    from &#123;</span><br><span class="line">      background: red;</span><br><span class="line">    &#125;</span><br><span class="line">    to &#123;</span><br><span class="line">      background: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  div &#123;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: red;</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">animation-name</span>: <span class="selector-tag">animate</span>; <span class="comment">/* 動畫名稱 */</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">animation-duration</span>: 1<span class="selector-tag">s</span>; <span class="comment">/* 動畫間隔 */</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">animation-timing-function</span>: <span class="selector-tag">ease</span>; <span class="comment">/* 速度函式 */</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">animation-delay</span>: 0<span class="selector-class">.1s</span>; <span class="comment">/* 動畫延遲 */</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">animation-iteration-count</span>: <span class="selector-tag">infinite</span>; <span class="comment">/* 播放次數 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="comment">/* 循環交替或反向播放*/</span></span></span><br><span class="line">    animation-direction: alternate;</span><br><span class="line">    /* </span><br><span class="line">    animation-direction:</span><br><span class="line">    normal（默認，正常播放）</span><br><span class="line">    revers（反向播放）</span><br><span class="line">    alternate（輪流交替播放，動畫在奇數次 1,3,5 正向播放，在偶數次 2,4,6 反向播放）</span><br><span class="line">    alternate-reverse（動畫在奇數次 1,3,5 反向播放，在偶數次 2,4,6 正向播放）</span><br><span class="line">    */</span><br><span class="line"></span><br><span class="line">    animation-fill-mode: forwards;</span><br><span class="line">    /* </span><br><span class="line">    forwards（保留動畫結束後的樣式，例如顏色、位置）</span><br><span class="line">    backwards（返回動畫一開始的樣式，例如顏色、位置） </span><br><span class="line">    */</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="comment">/* 以上可縮寫成 */</span></span></span><br><span class="line"><span class="css">    <span class="comment">/*animation: animate 1s infinite alternate forwards;*/</span></span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>HELLO WORLD<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="除了-from-跟-to-關鍵影格，也可以多重關鍵影格，利用完成度百分比指定"><a href="#除了-from-跟-to-關鍵影格，也可以多重關鍵影格，利用完成度百分比指定" class="headerlink" title="除了 from 跟 to 關鍵影格，也可以多重關鍵影格，利用完成度百分比指定"></a>除了 from 跟 to 關鍵影格，也可以多重關鍵影格，利用完成度百分比指定</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> bgColor &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可以在關鍵影格中任意影格上，才開始設定某動畫屬性"><a href="#可以在關鍵影格中任意影格上，才開始設定某動畫屬性" class="headerlink" title="可以在關鍵影格中任意影格上，才開始設定某動畫屬性"></a>可以在關鍵影格中任意影格上，才開始設定某動畫屬性</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> bgColor &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">0%</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.5</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">3600deg</span>) <span class="built_in">scale</span>(<span class="number">2</span>) <span class="built_in">skew</span>(<span class="number">3600deg</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可指定複數區段有同樣影格樣式"><a href="#可指定複數區段有同樣影格樣式" class="headerlink" title="可指定複數區段有同樣影格樣式"></a>可指定複數區段有同樣影格樣式</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> glow &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  &#125;</span><br><span class="line">  20%,60% &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line">  40%,80% &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: orange;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本範例-2"><a href="#基本範例-2" class="headerlink" title="基本範例 2"></a>基本範例 2</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 建立動畫 class */</span></span><br><span class="line"><span class="selector-class">.fade</span> &#123;</span><br><span class="line">  <span class="attribute">animation-name</span>: fadeOut; <span class="comment">/* 動畫名稱 */</span></span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">2s</span>; <span class="comment">/* 動畫間隔 */</span></span><br><span class="line">  <span class="attribute">animation-timing-function</span>: ease-in-out; <span class="comment">/* 動畫函式 */</span></span><br><span class="line">  <span class="attribute">animation-delay</span>: <span class="number">5s</span>; <span class="comment">/* 動畫延遲 */</span></span><br><span class="line">  <span class="attribute">animation-iteration-count</span>: infinite; <span class="comment">/* 播放次數，infinite */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 循環交替或反向播放   */</span></span><br><span class="line">  <span class="attribute">animation-direction</span>: alternate;</span><br><span class="line">  <span class="comment">/* </span></span><br><span class="line"><span class="comment">  normal（默認，正常播放）</span></span><br><span class="line"><span class="comment">  revers（反向播放）</span></span><br><span class="line"><span class="comment">  alternate（輪流交替播放，動畫在奇數次 1,3,5 正向播放，在偶數次 2,4,6 反向播放）</span></span><br><span class="line"><span class="comment">  alternate-reverse（動畫在奇數次 1,3,5 反向播放，在偶數次 2,4,6 正向播放）</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="attribute">animation-fill-mode</span>: forwards;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  forwards（保留動畫結束後的樣式，例如顏色、位置）</span></span><br><span class="line"><span class="comment">  backwards（返回動畫一開始的樣式，例如顏色、位置） </span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 動畫暫停 （可以用 javascript 設計暫停效果） */</span></span><br><span class="line">  <span class="attribute">animation-play-state</span>: paused;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*以上可縮寫為*/</span></span><br><span class="line">  <span class="comment">/* animation: fadeOut 2s ease-in-out 5s 2 alternate forwards; */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="套用一個以上的動畫"><a href="#套用一個以上的動畫" class="headerlink" title="套用一個以上的動畫"></a>套用一個以上的動畫</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 可以套用多個動畫到同個選擇器，屬性值需對應好，fadeIn 1s、blink 3s */</span></span><br><span class="line"><span class="selector-class">.fade</span> &#123;</span><br><span class="line">  <span class="attribute">animation-name</span>: fadeIn, blink;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">1s</span>, <span class="number">3s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="animation-裡面-transform-可以設定多屬性"><a href="#animation-裡面-transform-可以設定多屬性" class="headerlink" title="animation 裡面 transform 可以設定多屬性"></a>animation 裡面 transform 可以設定多屬性</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="keyword">@keyframes</span> ani &#123;</span></span><br><span class="line">    0% &#123;</span><br><span class="line">      background: red;</span><br><span class="line">      transform: scale(1) rotate(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">      background: blue;</span><br><span class="line">      transform: scale(2) rotate(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">    100% &#123;</span><br><span class="line">      background: green;</span><br><span class="line">      transform: scale(4) rotate(-360deg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  body &#123;</span><br><span class="line">    width: 100vw;</span><br><span class="line">    height: 100vh;</span><br><span class="line">    margin: 0;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.a</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background: red;</span><br><span class="line">    transform: scale(1) rotate(0deg);</span><br><span class="line"><span class="css">    <span class="comment">/* animation: name duration timing-function delay iteration-count direction fill-mode; */</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">animation</span>: <span class="selector-tag">ani</span> 3<span class="selector-tag">s</span> <span class="selector-tag">ease</span> 0<span class="selector-class">.1s</span> 3 <span class="selector-tag">alternate</span> <span class="selector-tag">forwards</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="媒體查詢-Media-Query"><a href="#媒體查詢-Media-Query" class="headerlink" title="媒體查詢 Media Query"></a>媒體查詢 Media Query</h1><p>網頁先查詢 media 指定之 Query 邏輯性 (true/false)，如果 media 條件符合再針對這些屬性套入 css 樣式。如果要使用 media queries，共有下列三種使用方式：</p>
+<ul>
+<li><p><strong>在 HTML 內使用</strong><br><br>在視窗 screen 時會邏輯成立 style.css，列印時則會邏輯成立 print.css。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"screen"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">media</span>=<span class="string">"print"</span> <span class="attr">href</span>=<span class="string">"print.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在 CSS 內使用</strong><br><br>如果直接寫在 CSS 裡，下列的寫法也是一樣的概念。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen&#123;</span><br><span class="line">  <span class="comment">/*css code*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> print&#123;</span><br><span class="line">  <span class="comment">/*css code*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用@import</strong><br><br>如果你喜歡在 CSS 文件內使用@import，也可以根據不同的 media 特性，import 不同的 css。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">"style.css"</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">"print.css"</span> print;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Media-的類型與特性"><a href="#Media-的類型與特性" class="headerlink" title="Media 的類型與特性"></a>Media 的類型與特性</h2><p>類型 (Types)：主要是根據用戶端裝置為何，目前 (CSS Level 4) 主要的 Media 類型有以下四種。</p>
+<h3 id="Media-Type"><a href="#Media-Type" class="headerlink" title="Media Type"></a>Media Type</h3><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>all</td>
+<td>所有裝置。</td>
+</tr>
+<tr>
+<td>print</td>
+<td>列印裝置，包含使用列印預覽產生的所有畫面 ( 例如列印為 pdf )。</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>螢幕裝置，不屬於 print 和 speech 的設備。</td>
+</tr>
+<tr>
+<td>speech</td>
+<td>朗讀裝置，針對可以「讀出」頁面的無障礙工具設備。</td>
+</tr>
+</tbody></table>
+<p>!&gt; tty、tv、projection、handheld、braille、embossed 和 aural 因為在 Level 4 已經描述未來不支援不多做介紹。</p>
+<p>特性 (Fratures)：主要是網頁環境上的細部描述為何，可分為四大類型（大多市面上只應用 viewport)。</p>
+<h3 id="視窗或頁面尺寸-Viewport-Page-Dimensions"><a href="#視窗或頁面尺寸-Viewport-Page-Dimensions" class="headerlink" title="視窗或頁面尺寸 ( Viewport/Page Dimensions )"></a>視窗或頁面尺寸 ( Viewport/Page Dimensions )</h3><table>
+<thead>
+<tr>
+<th>特徵</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>width</td>
+<td>螢幕寬度，支援 max-width 和 min-width。</td>
+</tr>
+<tr>
+<td>height</td>
+<td>螢幕高度，支援 max-height 和 min-height。</td>
+</tr>
+<tr>
+<td>aspect-ratio</td>
+<td>螢幕長寬比例，支援 max-aspect-ratio 和 min-aspect-ratio。( 長寬比的寫法格式為 1/1、1680/720… 等 )</td>
+</tr>
+<tr>
+<td>orientation</td>
+<td>螢幕旋轉方向，有兩個選項：portrait 和 landscape。 ( portrait 為直向，landscape 為橫向 )</td>
+</tr>
+</tbody></table>
+<h3 id="顯示品質-Display-Quality"><a href="#顯示品質-Display-Quality" class="headerlink" title="顯示品質 ( Display Quality )"></a>顯示品質 ( Display Quality )</h3><table>
+<thead>
+<tr>
+<th>特徵</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>resolution</td>
+<td>解析度 ( dpi、ppx… 等 )，支援 max-resolution 和 min-resolution</td>
+</tr>
+<tr>
+<td>scan</td>
+<td>電視掃描方式，有兩個選項：interlace 和 progressive。 ( interlace 為交錯式掃描，奇數偶數掃描線交錯，progressive 為漸進式掃描，是現在</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新媒體，有三個選項：none、slow 和 fast。( none 表示不會更新的顯示裝置，例如印出來的文件，slow 表示更新速度慢的顯示裝置，fast 表示</td>
+</tr>
+<tr>
+<td>overflow-block</td>
+<td>當內容包含 block 特性並超過邊界範圍，有四個選項：none、scroll、optional-paged 和 paged。( none 表示任何超過範圍都不顯</td>
+</tr>
+<tr>
+<td>overflow-inline</td>
+<td>當內容包含 inline 特性並超過邊界範圍，有兩個選項：none 和 scroll。</td>
+</tr>
+<tr>
+<td>grid</td>
+<td>網格媒體，兩個選項：0 和 1。</td>
+</tr>
+</tbody></table>
+<h3 id="顏色-Color"><a href="#顏色-Color" class="headerlink" title="顏色 ( Color )"></a>顏色 ( Color )</h3><table>
+<thead>
+<tr>
+<th>特徵</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>輸出裝置的色彩位元數，若數值為 0 則代表黑白裝置，支援 max-color 和 min-color。</td>
+</tr>
+<tr>
+<td>color-index</td>
+<td>輸出裝置的色彩索引位元數，支援 max-color-index 和 min-color-index。</td>
+</tr>
+<tr>
+<td>monochrome</td>
+<td>單色媒體功能，若數值為 0 表示「不是」單色設備。</td>
+</tr>
+<tr>
+<td>color-gamut</td>
+<td>輸出裝置色域，有三個選項：srgb、p3 和 rec2020。( 絕大多數的顯示器都支援 srgb，而 p3 的色域比 srgb 更廣且包含 srgb，rec2020</td>
+</tr>
+</tbody></table>
+<h3 id="互動-Interaction"><a href="#互動-Interaction" class="headerlink" title="互動 ( Interaction )"></a>互動 ( Interaction )</h3><table>
+<thead>
+<tr>
+<th>特徵</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pointer、any-pointer</td>
+<td>指標裝置 ( 例如滑鼠 ) 的準確性，有三個選項：none、coarse 和 fine。( none 表示沒有指標裝置，coarse 表示精度較差的指</td>
+</tr>
+<tr>
+<td>hover、any-hover</td>
+<td>裝置具備 hover 的能力，有兩個選項：none 和 hover。</td>
+</tr>
+</tbody></table>
+<p>?&gt; 可以使用 Types（多個）跟 Fratures（多個）兩大類別進行邏輯條件，也可複數組合 AND、OR、NOT（少用）使用。</p>
+<h2 id="Media-的寫法"><a href="#Media-的寫法" class="headerlink" title="Media 的寫法"></a>Media 的寫法</h2><ul>
+<li>Media 類型宣告先寫，如果是 all 類型（預設）可以省略。</li>
+<li>條件如果同時需要 (AND)，使用 and 分隔</li>
+<li>條件如果某項成立即可 (OR)，使用逗號分隔</li>
+<li>Fratures 特性類型記得用小括弧 () 包覆</li>
+</ul>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>AND 跟 OR 的用法</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width:</span> <span class="number">480px</span>) &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  螢幕裝置且 （目前寬度符合：min-width:480px ) 時成立</span></span><br><span class="line"><span class="comment">  也就是寬度需 480px 以上有效</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width:</span> <span class="number">700px</span>), print &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  目前的寬度符合 max-width:700px 時成立 （同理解讀成，寬度不超過 700px 有效）</span></span><br><span class="line"><span class="comment">  如果是列印裝置也成立</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">400px</span>) <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">700px</span>) &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  目前的寬度符合 400px~700px 時成立</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四種寬度區間的顏色。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">320px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightpink;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">550px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightyellow;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightgreen;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">960px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>瀏覽器 768px 以上時，呈現兩欄</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  * &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 50vh;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.bg1</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#fbc531</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.bg2</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background</span>: <span class="selector-id">#44bd32</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">768px</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">      width: 50%;</span><br><span class="line">      height: 100vh;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box bg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box bg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>BOOTSTRAP 的 RWD 寫法</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.col-sm-8</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width:</span> <span class="number">576px</span>) &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">  <span class="selector-class">.col-sm-8</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-flex</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">-ms-flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">66.666667%</span>;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">66.666667%</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">66.666667%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>維基百科的列印效果（部分畫面不顯示印出）</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> print &#123;</span><br><span class="line">  <span class="selector-class">.noprint</span>,</span><br><span class="line">  <span class="selector-class">.catlinks</span>,</span><br><span class="line">  <span class="selector-class">.magnify</span>,</span><br><span class="line">  <span class="selector-class">.mw-cite-backlink</span>,</span><br><span class="line">  <span class="selector-class">.mw-jump</span>,</span><br><span class="line">  <span class="selector-class">.mw-editsection</span>,</span><br><span class="line">  <span class="selector-class">.mw-editsection-like</span>,</span><br><span class="line">  <span class="selector-class">.mw-hidden-catlinks</span>,</span><br><span class="line">  <span class="selector-class">.mw-indicators</span>,</span><br><span class="line">  <span class="selector-class">.mw-redirectedfrom</span>,</span><br><span class="line">  <span class="selector-class">.patrollink</span>,</span><br><span class="line">  <span class="selector-class">.usermessage</span>,</span><br><span class="line">  <span class="selector-id">#column-one</span>,</span><br><span class="line">  <span class="selector-id">#footer-places</span>,</span><br><span class="line">  <span class="selector-id">#jump-to-nav</span>,</span><br><span class="line">  <span class="selector-id">#mw-navigation</span>,</span><br><span class="line">  <span class="selector-id">#siteNotice</span>,</span><br><span class="line">  <span class="selector-id">#f-poweredbyico</span>,</span><br><span class="line">  <span class="selector-id">#f-copyrightico</span>,</span><br><span class="line">  <span class="selector-tag">li</span><span class="selector-id">#about</span>,</span><br><span class="line">  <span class="selector-tag">li</span><span class="selector-id">#disclaimer</span>,</span><br><span class="line">  <span class="selector-tag">li</span><span class="selector-id">#mobileview</span>,</span><br><span class="line">  <span class="selector-tag">li</span><span class="selector-id">#privacy</span> &#123;</span><br><span class="line">      <span class="attribute">display</span>: none</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/html-css/" rel="tag"># html&css</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03-15/css-baseclass-4/" rel="prev" title="[基礎課程] CSS 教學（四）：浮動、佈局、Flex">
+      <i class="fa fa-chevron-left"></i> [基礎課程] CSS 教學（四）：浮動、佈局、Flex
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          關於本站
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#變形-Transform"><span class="nav-number">1.</span> <span class="nav-text">變形 Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#translate-平移"><span class="nav-number">1.1.</span> <span class="nav-text">translate 平移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scale-縮放"><span class="nav-number">1.2.</span> <span class="nav-text">scale 縮放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rotate-旋轉"><span class="nav-number">1.3.</span> <span class="nav-text">rotate 旋轉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#skew-歪斜"><span class="nav-number">1.4.</span> <span class="nav-text">skew 歪斜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transform-origin-變形點"><span class="nav-number">1.5.</span> <span class="nav-text">transform-origin 變形點</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轉場-Transition"><span class="nav-number">2.</span> <span class="nav-text">轉場 Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#單屬性或多屬性"><span class="nav-number">2.1.</span> <span class="nav-text">單屬性或多屬性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例：指定屬性轉場"><span class="nav-number">2.2.</span> <span class="nav-text">範例：指定屬性轉場</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例：多屬性效果"><span class="nav-number">2.3.</span> <span class="nav-text">範例：多屬性效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#動畫-Animation"><span class="nav-number">3.</span> <span class="nav-text">動畫 Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#動畫屬性"><span class="nav-number">3.1.</span> <span class="nav-text">動畫屬性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#縮寫方式"><span class="nav-number">3.1.1.</span> <span class="nav-text">縮寫方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#範例效果"><span class="nav-number">3.2.</span> <span class="nav-text">範例效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本範例-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">基本範例 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除了-from-跟-to-關鍵影格，也可以多重關鍵影格，利用完成度百分比指定"><span class="nav-number">3.2.2.</span> <span class="nav-text">除了 from 跟 to 關鍵影格，也可以多重關鍵影格，利用完成度百分比指定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以在關鍵影格中任意影格上，才開始設定某動畫屬性"><span class="nav-number">3.2.3.</span> <span class="nav-text">可以在關鍵影格中任意影格上，才開始設定某動畫屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可指定複數區段有同樣影格樣式"><span class="nav-number">3.2.4.</span> <span class="nav-text">可指定複數區段有同樣影格樣式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本範例-2"><span class="nav-number">3.2.5.</span> <span class="nav-text">基本範例 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#套用一個以上的動畫"><span class="nav-number">3.2.6.</span> <span class="nav-text">套用一個以上的動畫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation-裡面-transform-可以設定多屬性"><span class="nav-number">3.2.7.</span> <span class="nav-text">animation 裡面 transform 可以設定多屬性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒體查詢-Media-Query"><span class="nav-number">4.</span> <span class="nav-text">媒體查詢 Media Query</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Media-的類型與特性"><span class="nav-number">4.1.</span> <span class="nav-text">Media 的類型與特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Media-Type"><span class="nav-number">4.1.1.</span> <span class="nav-text">Media Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#視窗或頁面尺寸-Viewport-Page-Dimensions"><span class="nav-number">4.1.2.</span> <span class="nav-text">視窗或頁面尺寸 ( Viewport&#x2F;Page Dimensions )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顯示品質-Display-Quality"><span class="nav-number">4.1.3.</span> <span class="nav-text">顯示品質 ( Display Quality )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顏色-Color"><span class="nav-number">4.1.4.</span> <span class="nav-text">顏色 ( Color )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互動-Interaction"><span class="nav-number">4.1.5.</span> <span class="nav-text">互動 ( Interaction )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Media-的寫法"><span class="nav-number">4.2.</span> <span class="nav-text">Media 的寫法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例"><span class="nav-number">4.2.1.</span> <span class="nav-text">範例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Loki Jiang"
+      src="/images/loki_img.jpg">
+  <p class="site-author-name" itemprop="name">Loki Jiang</p>
+  <div class="site-description" itemprop="description">Time waits for no oneヽ(｀Д´)ﾉ</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/summer10920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;summer10920" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:summer10920@gmail.com" title="E-Mail → mailto:summer10920@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/loki-jiang" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;loki-jiang" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/yourname" title="vTiger (TW非官方) → https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>vTiger (TW非官方)</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Project Plans
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://b17300.lokiui.com/" title="https:&#x2F;&#x2F;b17300.lokiui.com" rel="noopener" target="_blank">網頁設計乙級術科解析</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Loki Jiang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
