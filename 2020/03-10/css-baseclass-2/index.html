@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":370,"display":"post","padding":20,"offset":20,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":370,"display":"post","padding":20,"offset":20,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="歡迎來到 CSS 教材的第二篇共五篇。除了第一篇屬於入門需要介紹 CSS 公式與使用方法，之後開始都是全部都討論屬性值的控制。可以根據方向性規劃出不同的領域介紹，第二篇都是一些很基礎的 CSS 屬性值，隨著後續章節越來越高階應用。">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="歡迎來到 CSS 教材的第二篇共五篇。除了第一篇屬於入門需要介紹 CSS 公式與使用方法，之後開始都是全部都討論屬性值的控制。可以根據方向性規劃出不同的領域介紹，第二篇都是一些很基礎的 CSS 屬性值，隨著後續章節越來越高階應用。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-03-09T17:27:51.000Z">
-<meta property="article:modified_time" content="2020-03-16T17:18:58.000Z">
+<meta property="article:modified_time" content="2020-03-22T04:04:04.000Z">
 <meta property="article:author" content="Loki Jiang">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="html&amp;css">
@@ -134,9 +134,14 @@
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">2</span></a>
 
   </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類<span class="badge">1</span></a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">7</span></a>
 
   </li>
   </ul>
@@ -194,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-17 01:18:58" itemprop="dateModified" datetime="2020-03-17T01:18:58+08:00">2020-03-17</time>
+                <time title="修改時間：2020-03-22 12:04:04" itemprop="dateModified" datetime="2020-03-22T12:04:04+08:00">2020-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -277,6 +282,11 @@
 <h2 id="文字-Text"><a href="#文字-Text" class="headerlink" title="文字 - Text"></a>文字 - Text</h2><p>網頁文字也能像 Office Word 那樣對文字段落做許多效果，尤其是中英文上段落詮釋有不同的參數可以指定。</p>
 <h3 id="段落樣式"><a href="#段落樣式" class="headerlink" title="段落樣式"></a>段落樣式</h3><p>包含了槓線（分上中下）、定位點 (Tab)、英文大小寫處理、文字陰影、溢出處理、文字與符號的間格寬度。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="comment">/*inline （包含 inline-block) 模式下的內部元素的對齊位置：</span></span><br><span class="line"><span class="comment">    jsutify, left, right, center</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*裝飾線：</span></span><br><span class="line"><span class="comment">    none, overline（上）, line-througn（中）, underline（下）</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">text-decoration</span>: underline;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** 定位 Tab **/</span></span><br><span class="line">  <span class="attribute">text-indent</span>: <span class="number">1.5rem</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*英文大小寫處理：</span></span><br><span class="line"><span class="comment">    capitalize（每個單字第一個英文字大寫）, lowercase（全小寫）, uppercase（全大寫）</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">text-transform</span>: uppercase;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*文字陰影：</span></span><br><span class="line"><span class="comment">    公式=&gt;水平、垂直、陰影模糊半徑、顏色，可以設定多重陰影用逗號分開</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">text-shadow</span>: <span class="number">3px</span> <span class="number">3px</span> <span class="number">3px</span> <span class="number">#999</span>;</span><br><span class="line">  <span class="comment">/* text-shadow: 3px 3px 3px #999, -3px -3px 3px #a00; */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/****/</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*超過上限寬度的處理：適合在一些版面預覽上有字數限定應用，但需要搭配條件才能凸顯</span></span><br><span class="line"><span class="comment">    1. block 模式下，持有寬度 （必要條件）</span></span><br><span class="line"><span class="comment">    2. 沒指定高度時不准換行讓他超出寬度 white-space: nowrap; </span></span><br><span class="line"><span class="comment">    3. 超出 block 就不要看到了 overflow:hidden （必要條件）</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    clip（切掉）, ellipsis（切掉並加上。.. 結尾）</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*字元間距：英文字母或中文字的間隔*/</span></span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">5rem</span>;</span><br><span class="line">  <span class="comment">/*單字間距，要有空格，中文很難有空格，較適合英文。*/</span></span><br><span class="line">  <span class="attribute">word-spacing</span>: <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note danger">
+            <p><strong>新手陷阱：text-align的有限功能</strong><br>text-align的功能僅限於作用該元素的content內容部分而不是本身整體元素的對齊控制，因此如果你希望該元素能控制定位，應對該元素之父層下達text-align屬性，因為該元素為父層的content內容。</p>
+          </div>
+
 <h3 id="文字換行"><a href="#文字換行" class="headerlink" title="文字換行"></a>文字換行</h3><p>數字或英文字無空格時會產生不換行超出盒框區域，有三種屬性可用。 </p>
 <ul>
 <li>word-break: 指定英文單字能否斷行。</li>
@@ -315,7 +325,7 @@
 <h2 id="小節練習-Font"><a href="#小節練習-Font" class="headerlink" title="小節練習 - Font"></a>小節練習 - Font</h2><p>以之前 HTML 文章的 <a href="/2020/03-05/html-baseclass-1/#總結練習">總結練習</a>來設計樣式：</p>
 <ol>
 <li>不故意修改 HTML 條件下，僅利用 CSS 來完成以下動作。</li>
-<li>將所有字體改成 “微軟中黑體”。</li>
+<li>將所有字體改成 “微軟正黑體”。</li>
 <li>設定標題 h1 的字型大小為 40px，且不是斜體（不刪除 em 情況下）。</li>
 <li>設定標題 h2 的顏色（隨意）。</li>
 <li>設定 a 連結樣式，一般、滑入、點擊時、點擊後四種狀態文字的顏色，以及一般狀態時無底線，滑入時底線。</li>
@@ -646,12 +656,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
@@ -742,7 +753,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
