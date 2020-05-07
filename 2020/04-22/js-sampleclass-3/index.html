@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":370,"display":"post","padding":20,"offset":20,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本篇介紹四種寫法，難度不高，主要是如何指定指針之初始位置。以及透過何種方法使指針自動更改旋轉角度。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[練習課程] JavaScript 實作（三）：類比時鐘設計">
+<meta property="og:url" content="http://summer10920.github.io/2020/04-22/js-sampleclass-3/">
+<meta property="og:site_name" content="洛奇的邪惡組織手札">
+<meta property="og:description" content="本篇介紹四種寫法，難度不高，主要是如何指定指針之初始位置。以及透過何種方法使指針自動更改旋轉角度。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-04-21T16:55:05.000Z">
+<meta property="article:modified_time" content="2020-04-21T18:19:20.000Z">
+<meta property="article:author" content="Loki Jiang">
+<meta property="article:tag" content="PHP 資料庫網頁設計（職前班）">
+<meta property="article:tag" content="JavaScript 程式設計（假日班）">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://summer10920.github.io/2020/04-22/js-sampleclass-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>[練習課程] JavaScript 實作（三）：類比時鐘設計 | 洛奇的邪惡組織手札</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146423952-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-146423952-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洛奇的邪惡組織手札</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">I am WebDeveloper!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">20</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/summer10920" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://summer10920.github.io/2020/04-22/js-sampleclass-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/loki_img.jpg">
+      <meta itemprop="name" content="Loki Jiang">
+      <meta itemprop="description" content="Time waits for no oneヽ(｀Д´)ﾉ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洛奇的邪惡組織手札">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [練習課程] JavaScript 實作（三）：類比時鐘設計
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-04-22 00:55:05 / 修改時間：02:19:20" itemprop="dateCreated datePublished" datetime="2020-04-22T00:55:05+08:00">2020-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%B7%E8%A8%93%E6%95%99%E6%9D%90/" itemprop="url" rel="index"><span itemprop="name">職訓教材</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%B7%E8%A8%93%E6%95%99%E6%9D%90/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇介紹四種寫法，難度不高，主要是如何指定指針之初始位置。以及透過何種方法使指針自動更改旋轉角度。</p>
+<a id="more"></a>
+
+<h1 id="CSSAnimation-雙-DIV-表示法"><a href="#CSSAnimation-雙-DIV-表示法" class="headerlink" title="CSSAnimation+雙 DIV 表示法"></a>CSSAnimation+雙 DIV 表示法</h1><ol>
+<li>CSSAnimation 是拿來做為指針自轉的功能，速度要算好</li>
+<li>雙 DIV 是為了幫助外面 DIV 自我中心旋轉，使得指針可偏移角度</li>
+</ol>
+<h2 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"circle"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"zmin1"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jmin1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"zhour1"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jhour1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"zsec1"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jsec1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>CSS Animation + 雙 DIV<span class="tag">&lt;<span class="name">br</span> /&gt;</span>表示法<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>父 div 做中心旋轉，子 div 定位在父內的偏斜位置上。導致視覺上的子 div 進行旋轉時，有中心偏移效果<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="comment">/* align-content: center; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.circle</span> &#123;</span><br><span class="line">  <span class="comment">/*圓盤底*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: white;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jhour1</span> &#123;</span><br><span class="line">  <span class="comment">/*時針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#00f</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">25%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jmin1</span> &#123;</span><br><span class="line">  <span class="comment">/*分針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#0f0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">15%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jsec1</span> &#123;</span><br><span class="line">  <span class="comment">/*秒針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f00</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">5%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">2px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.zsec1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">animation</span>: j_s <span class="number">60s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.zmin1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">animation</span>: j_m <span class="number">3600s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.zhour1</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">animation</span>: j_h <span class="number">43200s</span> infinite linear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-部分"><a href="#JS-部分" class="headerlink" title="JS 部分"></a>JS 部分</h2><p>接著 JS 這裡則是負責將編寫 css 的 keyframes 的出發角度，因此不容易透過 DOM 去調整。這裡我們<mark>把 Script 標籤放在 head 內</mark>，利用 document.write 來達到 style 編寫。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  /*</span><br><span class="line">  * JS 時分秒每個時間位置先換算角度</span><br><span class="line">  * 分秒的總位置共 60 個，每個位置變化角度 360°/60=6°</span><br><span class="line">  * 時的總位置變化共 12*60	（每分鐘會移動，所以 24 大格內，每大格有 60 小格，但 12 小時就跑完一圈只需算 12 大格）</span><br><span class="line"><span class="actionscript">  * 時針位置<span class="string">"每 1 分"</span>角度小變化 (<span class="number">360</span>°/<span class="number">12</span>)/<span class="number">60</span>=<span class="number">0.5</span>°</span></span><br><span class="line"><span class="actionscript">  * 分針位置<span class="string">"每 1 秒"</span>角度小變化 (<span class="number">360</span>°/<span class="number">12</span>/<span class="number">5</span>)/<span class="number">60</span>=<span class="number">0.1</span>°</span></span><br><span class="line">  * </span><br><span class="line"><span class="actionscript">  * 秒針位置<span class="string">"每 1 秒"</span>角度變化 (<span class="number">360</span>°)/<span class="number">60</span>=<span class="number">6</span>°</span></span><br><span class="line">  * </span><br><span class="line">  * 舉例 23:59:59 秒：</span><br><span class="line">  *   秒的位置=&gt;59*6=354°</span><br><span class="line">  *   分的位置=&gt;59*6+59*0.1°</span><br><span class="line">  *   時的位置=&gt;(23*30)+(59*0.5)=719.5=360+359.5°</span><br><span class="line">  */</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> pos_s = time.getSeconds();</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> pos_m = time.getMinutes();</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> pos_h = time.getHours();</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> x = pos_s * <span class="number">6</span>;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> y = pos_m * <span class="number">6</span> + pos_s * <span class="number">0.1</span>; <span class="comment">/*對 Y 來說還有一個角度是 60 秒滿足 6 度*/</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> z = pos_h * <span class="number">30</span> + pos_m * <span class="number">0.5</span>; <span class="comment">/*對 Z 來說還有一個角度是 60 分鐘滿足 30 度*/</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.write(<span class="string">`</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span></span></span><br><span class="line">      @keyframes j_s &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">from</span> &#123;<span class="attr">transform</span>: rotate($&#123;x&#125;deg);&#125;</span></span><br><span class="line">        to &#123;transform: rotate($&#123;360 + x&#125;deg);&#125;</span><br><span class="line">      &#125;</span><br><span class="line">      @keyframes j_m &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">from</span> &#123;<span class="attr">transform</span>: rotate($&#123;y&#125;deg);&#125;</span></span><br><span class="line">        to &#123;transform: rotate($&#123;360 + y&#125;deg);&#125;</span><br><span class="line">      &#125;</span><br><span class="line">      @keyframes j_h &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">from</span> &#123;<span class="attr">transform</span>: rotate($&#123;z&#125;deg);&#125;</span></span><br><span class="line">        to &#123;transform: rotate($&#123;360 + z&#125;deg);&#125;</span><br><span class="line">      &#125;</span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span></span><br><span class="line">  `);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="CSSAnimation-圖片堆疊表示法"><a href="#CSSAnimation-圖片堆疊表示法" class="headerlink" title="CSSAnimation+圖片堆疊表示法"></a>CSSAnimation+圖片堆疊表示法</h1><ol>
+<li>CSSAnimation 跟前者相同（利用 JS 控制時間初始角度+animation 相符速度自轉）</li>
+<li>圖片堆疊主要是探討一個 div 規劃中心自轉，利用圖片的透背設計來彌補中心偏移的問題。</li>
+</ol>
+<h2 id="HTML-CSS-1"><a href="#HTML-CSS-1" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"circle"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jmin2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jhour2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jsec2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>CSS Animation + 圖片堆疊<span class="tag">&lt;<span class="name">br</span> /&gt;</span>表示法<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>透過圖片透明，使得旋轉中心不變但有色區域，有中心偏移效果<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.jhour2</span> &#123;</span><br><span class="line">  <span class="comment">/*時針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"hh.png"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">animation</span>: j_h <span class="number">43200s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jmin2</span> &#123;</span><br><span class="line">  <span class="comment">/*分針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"mm.png"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">animation</span>: j_m <span class="number">3600s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.jsec2</span> &#123;</span><br><span class="line">  <span class="comment">/*秒針*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"ss.png"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: -<span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">animation</span>: j_s <span class="number">60s</span> infinite linear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JS-部分-1"><a href="#JS-部分-1" class="headerlink" title="JS 部分"></a>JS 部分</h2><p>相同運作原理，與前者共用即可</p>
+<hr>
+<h1 id="CSSAnimation-中心偏移表示法"><a href="#CSSAnimation-中心偏移表示法" class="headerlink" title="CSSAnimation+中心偏移表示法"></a>CSSAnimation+中心偏移表示法</h1><ol>
+<li>CSSAnimation 跟前者相同（利用 JS 控制時間初始角度+animation 相符速度自轉）</li>
+<li>利用 css 去重新定義 div 的旋轉中心偏移位置</li>
+</ol>
+<h2 id="HTML-CSS-2"><a href="#HTML-CSS-2" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cirtle"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jmin1 omin3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jhour1 ohour3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jsec1 osec3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>CSSAnimation+中心偏移<span class="tag">&lt;<span class="name">br</span>&gt;</span>表示法<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>補充屬性 transform-origin 真正讓旋轉的中心點偏移<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS 共用到第一招的 css 的指針，只是多補充一個中心定位。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.ohour3</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: j_h <span class="number">43200s</span> infinite linear;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">82px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.omin3</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: j_m <span class="number">3600s</span> infinite linear;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">116px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.osec3</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: j_s <span class="number">60s</span> infinite linear;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JS-部分-2"><a href="#JS-部分-2" class="headerlink" title="JS 部分"></a>JS 部分</h2><p>相同運作原理，與前者共用即可。</p>
+<hr>
+<h1 id="setInterval-中心偏移表示法"><a href="#setInterval-中心偏移表示法" class="headerlink" title="setInterval+中心偏移表示法"></a>setInterval+中心偏移表示法</h1><ol>
+<li>利用 js 的重複延遲執行去重新指定指針位置。這裡是每秒更新，會造成有停留效果（如果你要移動連續，則間格時差要算小些）</li>
+<li>與前者共用即可。</li>
+</ol>
+<h2 id="HTML-CSS-3"><a href="#HTML-CSS-3" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cirtle"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jmin1 omin4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jhour1 ohour4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"jsec1 osec4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>setInterval+中心偏移<span class="tag">&lt;<span class="name">br</span>&gt;</span>表示法<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>補充屬性 transform-origin，而不使用 kerfram 反而透過 setInterval 來執行<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS 與前者的 CSS 差不多，只差別於不再利用 CSS 動畫完成自轉。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.ohour4</span> &#123;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">82px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.omin4</span> &#123;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">116px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.osec4</span> &#123;</span><br><span class="line">  <span class="attribute">transform-origin</span>: <span class="number">50%</span> <span class="number">150px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JS-部分-3"><a href="#JS-部分-3" class="headerlink" title="JS 部分"></a>JS 部分</h2><p>這裡就重新編輯每次的指針位置，放置在 body 內即可。初始時要先算一次位置（借用前者 JS 出現過的<code>pos_s</code>,<code>pos_s</code>,<code>pos_s</code>)，但之後需重新每秒取得新的<code>pos_s</code>,<code>pos_s</code>,<code>pos_s</code>再透過 DOM 去修改角度。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*初始先 ON 一遍 DOM*/</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">'osec4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;x&#125;</span>deg)`</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">'omin4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;y&#125;</span>deg)`</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">'ohour4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;z&#125;</span>deg)`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*跑 reply*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">overtime</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  pos_s = time.getSeconds();</span><br><span class="line">  pos_m = time.getMinutes();</span><br><span class="line">  pos_h = time.getHours();</span><br><span class="line">  x = pos_s * <span class="number">6</span>;</span><br><span class="line">  y = pos_m * <span class="number">6</span> + pos_s * <span class="number">0.1</span>; <span class="comment">/*對 Y 來說還有一個角度是 60 秒滿足 6 度*/</span></span><br><span class="line">  z = pos_h * <span class="number">30</span> + pos_m * <span class="number">0.5</span>; <span class="comment">/*對 Z 來說還有一個角度是 60 分鐘滿足 30 度*/</span></span><br><span class="line">  <span class="built_in">document</span>.getElementsByClassName(<span class="string">'osec4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;x&#125;</span>deg)`</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementsByClassName(<span class="string">'omin4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;y&#125;</span>deg)`</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementsByClassName(<span class="string">'ohour4'</span>)[<span class="number">0</span>].style.transform=<span class="string">`rotate(<span class="subst">$&#123;z&#125;</span>deg)`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> loop=setInterval(overtime,<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ctl</span>(<span class="params">who</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(who.textContent==<span class="string">"STOP"</span>)&#123;</span><br><span class="line">    clearInterval(loop);</span><br><span class="line">    who.textContent=<span class="string">"PLAY"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    loop=setInterval(overtime,<span class="number">1000</span>);</span><br><span class="line">    who.textContent=<span class="string">"STOP"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<div class="note default">
+            <p><strong>示範參考：</strong> </p><ul><li><a href="https://github.com/summer10920/js_analogClock" target="_blank" rel="noopener">View Full Code</a></li><li><a href="http://page005.lokiui.com/" target="_blank" rel="noopener">DEMO Page</a></li></ul>
+          </div>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP-%E8%B3%87%E6%96%99%E5%BA%AB%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%EF%BC%88%E8%81%B7%E5%89%8D%E7%8F%AD%EF%BC%89/" rel="tag"># PHP 資料庫網頁設計（職前班）</a>
+              <a href="/tags/JavaScript-%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%EF%BC%88%E5%81%87%E6%97%A5%E7%8F%AD%EF%BC%89/" rel="tag"># JavaScript 程式設計（假日班）</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04-21/js-sampleclass-2/" rel="prev" title="[練習課程] JavaScript 實作（二）：數位時鐘設計">
+      <i class="fa fa-chevron-left"></i> [練習課程] JavaScript 實作（二）：數位時鐘設計
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04-22/js-sampleclass-4/" rel="next" title="[練習課程] JavaScript 實作（四）：打地鼠遊戲">
+      [練習課程] JavaScript 實作（四）：打地鼠遊戲 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          關於本站
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSSAnimation-雙-DIV-表示法"><span class="nav-number">1.</span> <span class="nav-text">CSSAnimation+雙 DIV 表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS"><span class="nav-number">1.1.</span> <span class="nav-text">HTML+CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-部分"><span class="nav-number">1.2.</span> <span class="nav-text">JS 部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSSAnimation-圖片堆疊表示法"><span class="nav-number">2.</span> <span class="nav-text">CSSAnimation+圖片堆疊表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS-1"><span class="nav-number">2.1.</span> <span class="nav-text">HTML+CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-部分-1"><span class="nav-number">2.2.</span> <span class="nav-text">JS 部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSSAnimation-中心偏移表示法"><span class="nav-number">3.</span> <span class="nav-text">CSSAnimation+中心偏移表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS-2"><span class="nav-number">3.1.</span> <span class="nav-text">HTML+CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-部分-2"><span class="nav-number">3.2.</span> <span class="nav-text">JS 部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setInterval-中心偏移表示法"><span class="nav-number">4.</span> <span class="nav-text">setInterval+中心偏移表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS-3"><span class="nav-number">4.1.</span> <span class="nav-text">HTML+CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-部分-3"><span class="nav-number">4.2.</span> <span class="nav-text">JS 部分</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Loki Jiang"
+      src="/images/loki_img.jpg">
+  <p class="site-author-name" itemprop="name">Loki Jiang</p>
+  <div class="site-description" itemprop="description">Time waits for no oneヽ(｀Д´)ﾉ</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/summer10920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;summer10920" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:summer10920@gmail.com" title="E-Mail → mailto:summer10920@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/loki-jiang" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;loki-jiang" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/yourname" title="vTiger (TW非官方) → https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>vTiger (TW非官方)</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Project Plans
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://b17300.lokiui.com/" title="https:&#x2F;&#x2F;b17300.lokiui.com" rel="noopener" target="_blank">網頁設計乙級術科解析</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Loki Jiang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
