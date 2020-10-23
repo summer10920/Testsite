@@ -29,7 +29,7 @@
 <meta property="og:description" content="在網頁設計領域中，我們能將一個由 HTML&#x2F;CSS 所編譯出的靜態網頁透過伺服器請求一次性的傳送到用戶端之瀏覽器，換言之連線已經結束伺服器不會再提供任何資料給用戶。 而使用 JavaScript 能透過腳本編譯過後的規則，幫助我們在用戶端重新對這個靜態網頁進行再造可能。簡單來說就像透過印表機已印出且定案的 A4 文件，事後 JavaScript 能像魔法之念能力（輕薄的假象？!）根據指定動作重新對">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-04-13T09:27:33.000Z">
-<meta property="article:modified_time" content="2020-05-08T11:32:36.000Z">
+<meta property="article:modified_time" content="2020-09-15T06:07:24.000Z">
 <meta property="article:author" content="Loki Jiang">
 <meta property="article:tag" content="PHP 資料庫網頁設計（職前班）">
 <meta property="article:tag" content="JavaScript 程式設計（假日班）">
@@ -134,17 +134,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類<span class="badge">9</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">40</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -227,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-05-08 19:32:36" itemprop="dateModified" datetime="2020-05-08T19:32:36+08:00">2020-05-08</time>
+                <time title="修改時間：2020-09-15 14:07:24" itemprop="dateModified" datetime="2020-09-15T14:07:24+08:00">2020-09-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +350,7 @@
 <li><p>const | ES6 加入常態變數，宣告後無法被改寫值</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> b=<span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//Hello</span></span><br><span class="line">b=<span class="string">"World"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>let | ES6 區塊內之獨立變數，只活在{}內</p>
+<li><p>let | ES6 區塊內之獨立變數，只活在{}內且宣告後無法再重複宣告</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> c=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> c=<span class="number">4</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(c); <span class="comment">//4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//宣告後不可以重新再新註冊為 let 值到&#123;&#125;結束之前</span></span><br><span class="line"><span class="comment">//通常在&#123;&#125;範圍內使用 let 最適合，能不影響到其他代碼之干擾</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;=<span class="number">5</span>;i++) &#123; <span class="comment">//let 改成 var 看看</span></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i)</span><br><span class="line">  &#125;,<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>沒寫 | 會被當臨時變數且為全域。可以透過 delete 刪除掉</p>
@@ -458,7 +458,7 @@
 <li><p>typeof<br>可確認該變數的型態為何者，通常做檢查用</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="string">"123"</span>;</span><br><span class="line"><span class="keyword">typeof</span>(a);</span><br><span class="line"><span class="keyword">var</span> b=<span class="number">123</span>;</span><br><span class="line"><span class="keyword">typeof</span>(b);</span><br><span class="line"><span class="keyword">var</span> c=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">typeof</span>(c);</span><br></pre></td></tr></table></figure></li>
 <li><p>Date</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="comment">//兩者不同，前者為物件指向為變數使用 new，後者只是當作文字，要做 Date 的變化只能前者</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Date() 預設不填寫為目前時間，你可以指定任何時間，此為參數表示法為例，月份 0~11 數字代表</span></span><br><span class="line"><span class="keyword">var</span> custime1=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2019</span>, <span class="number">11</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>, <span class="number">999</span>);</span><br><span class="line"><span class="keyword">var</span> custime2=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2019-12-31T23:59:59"</span>);;<span class="comment">//ISO 表示法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*如何抽出日期數字*/</span></span><br><span class="line">time.getFullYear();</span><br><span class="line">time.getMonth()+<span class="number">1</span>;</span><br><span class="line">time.getDate();</span><br><span class="line">time.getHours();</span><br><span class="line">time.getMinutes();</span><br><span class="line">time.getSeconds();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*如何計算倒數日期*/</span></span><br><span class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> custime2=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2019-12-31T23:59:59"</span>);;<span class="comment">//ISO 表示法</span></span><br><span class="line">tmin=time.getTime(); <span class="comment">//兩者先取得時間戳記（毫秒）</span></span><br><span class="line">tmax=custime2.getTime();</span><br><span class="line">beto=<span class="built_in">Math</span>.floor((tmax-tmin)/<span class="number">1000</span>);</span><br><span class="line"><span class="comment">//區間總數 （秒），不要小數點是因為秒數我們只要整數，小數點單位（毫秒）就不要了</span></span><br><span class="line"><span class="comment">//假設此時 beto=54321 秒，以下進行示範說明</span></span><br><span class="line"></span><br><span class="line">bsec=beto%<span class="number">60</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 54321%60=21</span></span><br><span class="line"><span class="comment"> * 也就是說 21 秒是無法升級為分的殘餘</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// bmin=(beto/60)%60;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 54321/60=905.35    </span></span><br><span class="line"><span class="comment"> * 其中 0.35 如果* 60 會等於 21</span></span><br><span class="line"><span class="comment"> * 也就是說小數點可以代表上一個秒的值，由於這裡我們不要秒所以你可以 floor 處理</span></span><br><span class="line"><span class="comment"> * 結論我們要的 bmin 會是</span></span><br><span class="line"><span class="comment"> * 1=&gt;(Math.floor(beto/60))%60 </span></span><br><span class="line"><span class="comment"> * 或 </span></span><br><span class="line"><span class="comment"> * 2=&gt;Math.floor(beto/60)%60)</span></span><br><span class="line"><span class="comment"> * 不論 1 還是 2 答案都一樣，因為小數點都是上一階段沒消除的業障。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">bmin=<span class="built_in">Math</span>.floor((beto/<span class="number">60</span>)%<span class="number">60</span>);</span><br><span class="line"><span class="comment">//同理</span></span><br><span class="line"></span><br><span class="line">bhur=<span class="built_in">Math</span>.floor((beto/<span class="number">60</span>/<span class="number">60</span>)%<span class="number">24</span>);</span><br><span class="line"><span class="comment">//同理</span></span><br><span class="line"></span><br><span class="line">bday=<span class="built_in">Math</span>.floor(beto/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>);</span><br><span class="line"><span class="comment">//這裡不用餘數，是因為不再昇華到下一階段，最大單位就是天數</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`今年只剩<span class="subst">$&#123;bday&#125;</span>天<span class="subst">$&#123;bhur&#125;</span>時<span class="subst">$&#123;bmin&#125;</span>分<span class="subst">$&#123;bsec&#125;</span>秒就跨年囉！`</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> now=<span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(now,time);</span><br><span class="line"><span class="comment">//兩者不同，前者為物件指向為變數使用 new，後者只是當作文字，要做 Date 的變化只能前者</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Date() 預設不填寫為目前時間，你可以指定任何時間，此為參數表示法為例，月份 0~11 數字代表</span></span><br><span class="line"><span class="keyword">var</span> custime1=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2019</span>, <span class="number">11</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>, <span class="number">999</span>);</span><br><span class="line"><span class="keyword">var</span> custime2=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2019-12-31T23:59:59"</span>);;<span class="comment">//ISO 表示法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*如何抽出日期數字*/</span></span><br><span class="line">time.getFullYear();</span><br><span class="line">time.getMonth()+<span class="number">1</span>;</span><br><span class="line">time.getDate();</span><br><span class="line">time.getHours();</span><br><span class="line">time.getMinutes();</span><br><span class="line">time.getSeconds();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*如何計算倒數日期*/</span></span><br><span class="line"><span class="keyword">var</span> time=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> custime2=<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2019-12-31T23:59:59"</span>);;<span class="comment">//ISO 表示法</span></span><br><span class="line">tmin=time.getTime(); <span class="comment">//兩者先取得時間戳記（毫秒）</span></span><br><span class="line">tmax=custime2.getTime();</span><br><span class="line">beto=<span class="built_in">Math</span>.floor((tmax-tmin)/<span class="number">1000</span>);</span><br><span class="line"><span class="comment">//區間總數 （秒），不要小數點是因為秒數我們只要整數，小數點單位（毫秒）就不要了</span></span><br><span class="line"><span class="comment">//假設此時 beto=54321 秒，以下進行示範說明</span></span><br><span class="line"></span><br><span class="line">bsec=beto%<span class="number">60</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 54321%60=21</span></span><br><span class="line"><span class="comment"> * 也就是說 21 秒是無法升級為分的殘餘</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// bmin=(beto/60)%60;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 54321/60=905.35    </span></span><br><span class="line"><span class="comment"> * 其中 0.35 如果* 60 會等於 21</span></span><br><span class="line"><span class="comment"> * 也就是說小數點可以代表上一個秒的值，由於這裡我們不要秒所以你可以 floor 處理</span></span><br><span class="line"><span class="comment"> * 結論我們要的 bmin 會是</span></span><br><span class="line"><span class="comment"> * 1=&gt;(Math.floor(beto/60))%60 </span></span><br><span class="line"><span class="comment"> * 或 </span></span><br><span class="line"><span class="comment"> * 2=&gt;Math.floor(beto/60)%60)</span></span><br><span class="line"><span class="comment"> * 不論 1 還是 2 答案都一樣，因為小數點都是上一階段沒消除的業障。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">bmin=<span class="built_in">Math</span>.floor((beto/<span class="number">60</span>)%<span class="number">60</span>);</span><br><span class="line"><span class="comment">//同理</span></span><br><span class="line"></span><br><span class="line">bhur=<span class="built_in">Math</span>.floor((beto/<span class="number">60</span>/<span class="number">60</span>)%<span class="number">24</span>);</span><br><span class="line"><span class="comment">//同理</span></span><br><span class="line"></span><br><span class="line">bday=<span class="built_in">Math</span>.floor(beto/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>);</span><br><span class="line"><span class="comment">//這裡不用餘數，是因為不再昇華到下一階段，最大單位就是天數</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`今年只剩<span class="subst">$&#123;bday&#125;</span>天<span class="subst">$&#123;bhur&#125;</span>時<span class="subst">$&#123;bmin&#125;</span>分<span class="subst">$&#123;bsec&#125;</span>秒就跨年囉！`</span>);</span><br></pre></td></tr></table></figure>
 <div class="note default">
             <p>格式表示法還有很多，請自行查詢 <a href="https://www.w3schools.com/js/js_date_formats.asp" target="_blank" rel="noopener">https://www.w3schools.com/js/js_date_formats.asp</a></p>
           </div>
@@ -587,20 +587,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
