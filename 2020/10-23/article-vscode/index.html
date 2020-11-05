@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo-loki.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"summer10920.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","width":370,"display":"post","padding":20,"offset":20,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="VSCode 為 Microsoft 所提供的免費編譯器軟體，是近幾年市佔率蠻高的選擇。因此認真研究寫了一篇使用 VSCode 所需要會的技巧。而這些資訊大部分從官方文件就能找到，只有擴充模組就看行圈內的流行性話題了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[學習之路] VSCode 的技巧大補帖">
+<meta property="og:url" content="http://summer10920.github.io/2020/10-23/article-vscode/">
+<meta property="og:site_name" content="洛奇的邪惡組織手札">
+<meta property="og:description" content="VSCode 為 Microsoft 所提供的免費編譯器軟體，是近幾年市佔率蠻高的選擇。因此認真研究寫了一篇使用 VSCode 所需要會的技巧。而這些資訊大部分從官方文件就能找到，只有擴充模組就看行圈內的流行性話題了。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/WDY6I7B.gif">
+<meta property="og:image" content="https://i.imgur.com/XrEIzNy.gif">
+<meta property="og:image" content="https://i.imgur.com/vgzZkBd.png">
+<meta property="og:image" content="https://i.imgur.com/QvJ9vk2.gif">
+<meta property="og:image" content="https://i.imgur.com/siAPKSl.gif">
+<meta property="og:image" content="https://i.imgur.com/anKpJcC.gif">
+<meta property="og:image" content="https://i.imgur.com/odAtul6.gif">
+<meta property="og:image" content="https://i.imgur.com/hEwYPjF.gif">
+<meta property="og:image" content="https://i.imgur.com/zKibzO9.gif">
+<meta property="og:image" content="https://i.imgur.com/wJXtS3j.gif">
+<meta property="og:image" content="https://i.imgur.com/K7pJDZ1.gif">
+<meta property="og:image" content="https://i.imgur.com/7Zy45tj.gif">
+<meta property="og:image" content="https://i.imgur.com/Glish29.gif">
+<meta property="og:image" content="https://i.imgur.com/nFmgots.gif">
+<meta property="og:image" content="https://i.imgur.com/wHUHLAk.png">
+<meta property="og:image" content="https://i.imgur.com/Vc5juNu.gif">
+<meta property="og:image" content="https://i.imgur.com/Eaeb9s7.gif">
+<meta property="og:image" content="https://i.imgur.com/7Jzl0v1.gif">
+<meta property="og:image" content="https://i.imgur.com/OxXz1YG.gif">
+<meta property="og:image" content="https://i.imgur.com/6RtzpjS.gif">
+<meta property="og:image" content="https://i.imgur.com/Ls4Ewhp.gif">
+<meta property="og:image" content="https://i.imgur.com/okdBYKh.png">
+<meta property="article:published_time" content="2020-10-23T08:02:24.000Z">
+<meta property="article:modified_time" content="2020-11-05T06:32:38.000Z">
+<meta property="article:author" content="Loki Jiang">
+<meta property="article:tag" content="VSCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/WDY6I7B.gif">
+
+<link rel="canonical" href="http://summer10920.github.io/2020/10-23/article-vscode/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>[學習之路] VSCode 的技巧大補帖 | 洛奇的邪惡組織手札</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146423952-3"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-146423952-3');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洛奇的邪惡組織手札</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">I am WebDeveloper!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>所有文章<span class="badge">41</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋內文
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/summer10920" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://summer10920.github.io/2020/10-23/article-vscode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/loki_img.jpg">
+      <meta itemprop="name" content="Loki Jiang">
+      <meta itemprop="description" content="Time waits for no oneヽ(｀Д´)ﾉ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洛奇的邪惡組織手札">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [學習之路] VSCode 的技巧大補帖
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-10-23 16:02:24" itemprop="dateCreated datePublished" datetime="2020-10-23T16:02:24+08:00">2020-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-11-05 14:32:38" itemprop="dateModified" datetime="2020-11-05T14:32:38+08:00">2020-11-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zero-Road/" itemprop="url" rel="index"><span itemprop="name">Zero Road</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">閱讀次數：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>VSCode 為 Microsoft 所提供的免費編譯器軟體，是近幾年市佔率蠻高的選擇。因此認真研究寫了一篇使用 VSCode 所需要會的技巧。而這些資訊大部分從官方文件就能找到，只有擴充模組就看行圈內的流行性話題了。</p>
+<a id="more"></a>
+
+<h1 id="快捷鍵篇"><a href="#快捷鍵篇" class="headerlink" title="快捷鍵篇"></a>快捷鍵篇</h1><p>VSCODE 提供強大的快捷鍵使用，詳細資訊收錄在官方手冊或者可透過 VSCODE 軟體的 <a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf" target="_blank" rel="noopener">說明-&gt;鍵盤快速鍵參考</a> 取得線上說明。本節將全體翻譯並提取部分實用做細部說明。</p>
+<h2 id="General-一般指令"><a href="#General-一般指令" class="headerlink" title="General 一般指令"></a>General 一般指令</h2><ul>
+<li><kbd>Ctrl+Shift+P</kbd> <kbd>F1</kbd> 命令選擇區</li>
+<li><kbd>Ctrl+P</kbd> <kbd>Ctrl+E</kbd> 快速檔案開啟<br>比起透過工作區慢慢找檔案，該指令可找到最近開啟的，也能用輸入檔名之關鍵字找到工作區內的檔案。</li>
+<li><kbd>Ctrl+Shift+N</kbd> 開啟新的 VSCODE</li>
+<li><kbd>Ctrl+Shift+W</kbd> 關閉目前的 VSCODE</li>
+<li><kbd>Ctrl+,</kbd> 用戶設定</li>
+<li><kbd>Ctrl+K Ctrl+S</kbd> 鍵盤快速鍵</li>
+</ul>
+<h2 id="Basic-editing-基本編輯"><a href="#Basic-editing-基本編輯" class="headerlink" title="Basic editing 基本編輯"></a>Basic editing 基本編輯</h2><ul>
+<li><kbd>Ctrl+X</kbd> 剪下該行（未選取可）</li>
+<li><kbd>Ctrl+C</kbd> 複製該行 （未選取可）</li>
+<li><kbd>Alt+ ↑ / ↓</kbd> 移動該行至上下處<br>快速將目前位置進行整行移動於上或下方指定處。<br><img src="https://i.imgur.com/WDY6I7B.gif" alt="move_line"></li>
+<li><kbd>Shift+Alt + ↓ / ↑</kbd> 複製該行至上下處<br>快速將目前位置進行整行複製並貼於上或下方指定處。<br><img src="https://i.imgur.com/XrEIzNy.gif" alt="copy_line_down"></li>
+<li><kbd>Ctrl+Shift+K</kbd> 刪除該行並清除該行數</li>
+<li><kbd>Ctrl+Enter</kbd> 插入空行於下方</li>
+<li><kbd>Ctrl+Shift+Enter</kbd> 插入空行於上方</li>
+<li><kbd>Ctrl+Shift+&lt;/kbd> 跳至對應的區段符號處，例如<code>(), {}, []</code></li>
+<li><kbd>Home / End</kbd> 前往該行首或行尾處</li>
+<li><kbd>Ctrl+Home / Ctrl+End</kbd> 前往編譯檔之頁首或頁尾</li>
+<li><kbd>Ctrl+↑ / ↓</kbd> 朝上下滾動單行</li>
+<li><kbd>Alt+PgUp / PgDn</kbd> 朝上下滾動單頁</li>
+<li><kbd>Ctrl+K Ctrl+0</kbd> 收合所有程式碼</li>
+<li><kbd>Ctrl+K Ctrl+J</kbd> 展開所有程式碼</li>
+<li><kbd>Ctrl+K Ctrl+C</kbd> 轉為單行註解</li>
+<li><kbd>Ctrl+K Ctrl+U</kbd> 解除單行註解</li>
+<li><kbd>Ctrl+/</kbd> 切換單行註解</li>
+<li><kbd>Shift+Alt+A</kbd> 切換區域註解</li>
+<li><kbd>Alt+Z</kbd> 切換自動換行</li>
+</ul>
+<h2 id="Navigation-導覽"><a href="#Navigation-導覽" class="headerlink" title="Navigation 導覽"></a>Navigation 導覽</h2><ul>
+<li><kbd>Ctrl+T</kbd> 前往工作區內的符號<br>透過指令找到工作區內的變數或符號。<br><img src="https://i.imgur.com/vgzZkBd.png" alt="go_to_symbol_in_workspace"></li>
+<li><kbd>Ctrl+G</kbd> 前往行數</li>
+<li><kbd>Ctrl+Shift+O</kbd> 前往編譯檔內的符號<br>透過指令找到某個變數或符號，能更快的前往符號位置。可於搜尋列內添加符號 <kbd>:</kbd> 做分組過濾。而視窗的檔案總管工具 [大綱] 也有相同功用。<br><img src="https://i.imgur.com/QvJ9vk2.gif" alt="find_by_symbol"></li>
+<li><kbd>Ctrl+Shift+M</kbd> 開啟問題視窗</li>
+<li><kbd>F8</kbd> 跳至下一個錯誤或警告之代碼處</li>
+<li><kbd>Shift+F8</kbd> 轉到上一個錯誤或警告之代碼處</li>
+<li><kbd>Ctrl+Shift+Tab</kbd> 反向快切編譯歷史紀錄</li>
+<li><kbd>Alt+ ← / →</kbd> 編譯歷史紀錄轉換</li>
+<li><kbd>Ctrl+M</kbd> 切換 TAB 鍵應用</li>
+</ul>
+<h2 id="Search-and-replace-搜尋替換"><a href="#Search-and-replace-搜尋替換" class="headerlink" title="Search and replace 搜尋替換"></a>Search and replace 搜尋替換</h2><ul>
+<li><kbd>Ctrl+F</kbd> 搜尋</li>
+<li><kbd>Ctrl+H</kbd> 替代</li>
+<li><kbd>F3 / Shift+F3</kbd> 搜尋下一個或上一個符合項目</li>
+<li><kbd>Alt+Enter</kbd> 在搜尋模式下將匹配的對象全部列入選取</li>
+<li><kbd>Ctrl+D</kbd> 相同選取<br>將已選取特定段落做匹配代碼，往後搜尋若相同則賦予選取游標。若不小選多選取了，則可透過 <kbd>ctrl + U</kbd> 將游標動作返回上一步驟。<br><img src="https://i.imgur.com/siAPKSl.gif" alt="add_cursor_current_selection_one_by_one"></li>
+<li><kbd>Ctrl+K Ctrl+D</kbd> 將目前選擇調整為下一個匹配選取</li>
+<li><kbd>Alt+C / R / </kbd> 切換大小寫/正則表達式/完整單詞</li>
+</ul>
+<h2 id="Multi-cursor-and-selection-多重選取"><a href="#Multi-cursor-and-selection-多重選取" class="headerlink" title="Multi-cursor and selection 多重選取"></a>Multi-cursor and selection 多重選取</h2><ul>
+<li><kbd>Alt+Click</kbd> 加入選取<br>將滑鼠 click 指向之處，列入游標選取對象。</li>
+<li><kbd>Ctrl+U</kbd> 復原上一次游標選取</li>
+<li><kbd>Shift+Alt+I</kbd> 於圈選範圍下之各行末處添加游標</li>
+<li><kbd>Ctrl+L</kbd> 選取當前行</li>
+<li><kbd>Ctrl+Shift+L</kbd> <kbd>Ctrl+F2</kbd> 相同皆為全部選取<br>若整個檔案都想選取起來（瘋狂 ctrl+d? 別這樣），一樣先選中一組匹配段落後進行快速鍵，能將全部相同代碼都進行游標選取。<br><img src="https://i.imgur.com/anKpJcC.gif" alt="add_cursor_current_selection"></li>
+<li><kbd>Shift+Alt+ → / ←</kbd> 延伸智慧選取<br>停留於某局部代碼處，快速鍵可延伸至外部層級範圍代碼進行擴大選取，隨著連續按下次數越多，圈選的範圍越大直到全部。超過時可退回範圍選取透過 <kbd>shift + alt + ←</kbd> 退回。<br><img src="https://i.imgur.com/odAtul6.gif" alt="expandselection"></li>
+<li><kbd>Shift+Alt + (drag mouse)</kbd> 列框選取 - 滑鼠拖曳<br>壓住滑鼠進行拖曳對角線之區域選取，能產生類似方框範圍列向選取之效果。<br><img src="https://i.imgur.com/hEwYPjF.gif" alt="column-select"></li>
+<li><kbd>Ctrl+Shift+Alt + (arrow key)</kbd>  列框選取 - 方向範圍或游標處<br>以目前游標位置向下行之相同處，列入游標選取對象。反向 <kbd>↑</kbd> 亦可。<br><img src="https://i.imgur.com/zKibzO9.gif" alt="multicursor"></li>
+<li><kbd>Ctrl+Shift+Alt + PgUp/PgDn</kbd> 列框選取 - 分頁範圍<br>同上，範圍擴大為分頁單位</li>
+</ul>
+<h2 id="Rich-languages-editing-語意編輯"><a href="#Rich-languages-editing-語意編輯" class="headerlink" title="Rich languages editing 語意編輯"></a>Rich languages editing 語意編輯</h2><ul>
+<li><kbd>Shift+Alt+F</kbd> 格式化文件</li>
+<li><kbd>Ctrl+K Ctrl+F</kbd> 格式化選擇範圍<br>指定範圍內做排版格式化<br><img src="https://i.imgur.com/wJXtS3j.gif" alt="code_formatting"></li>
+<li><kbd>F12</kbd> 移至定義<br>游標放置於某已應用之 fn 或變數名稱上，透過 F12 或右鍵選擇 <code>移至定義</code> 能直接跳轉到該該定義宣告方便理解作用為何。<br>如果動作結束後想回到原本行位置可以透過 <kbd>alt + ←</kbd>回到上次游標。<br><img src="https://i.imgur.com/K7pJDZ1.gif" alt="goto_definition"></li>
+<li><kbd>Alt+F12</kbd> 查核定義<br>小視窗的呈現該對象之宣告定義為何。<br><img src="https://i.imgur.com/7Zy45tj.gif" alt="peek"></li>
+<li><kbd>Ctrl+K F12</kbd> 開啟參考</li>
+<li><kbd>Shift+F12</kbd> 前往參考<br>小視窗的呈現所有編譯檔內的所有出現的 fn 或變數處，包含宣告與應用。<br><img src="https://i.imgur.com/Glish29.gif" alt="find_all_references"></li>
+<li><kbd>F2</kbd> 重新命名符號</li>
+<li><kbd>Ctrl+K Ctrl+X</kbd> 刪除多餘的空白結尾<br><img src="https://i.imgur.com/nFmgots.gif" alt="trim_whitespace"></li>
+<li><kbd>Ctrl+K M</kbd> 切換檔案語言</li>
+</ul>
+<h2 id="Editor-management-編輯視窗管理"><a href="#Editor-management-編輯視窗管理" class="headerlink" title="Editor management 編輯視窗管理"></a>Editor management 編輯視窗管理</h2><ul>
+<li><kbd>Ctrl+F4</kbd> <kbd>Ctrl+W</kbd> 關閉編譯視窗</li>
+<li><kbd>Ctrl+K F</kbd> 關閉工作區</li>
+<li><kbd>Ctrl+&lt;/kbd> 分割編輯視窗<br>將目前編輯畫面分割視窗做並排，對終端機視窗也通用。</li>
+<li><kbd>Ctrl+ 1 / 2 / 3</kbd> 依編譯視窗順序列切換<br>快切對應數字編號順序的編輯視窗切換。</li>
+<li><kbd>Ctrl+Shift+PgUp / PgDn</kbd> 移動編輯視窗順序</li>
+</ul>
+<h2 id="File-management-檔案管理"><a href="#File-management-檔案管理" class="headerlink" title="File management 檔案管理"></a>File management 檔案管理</h2><ul>
+<li><kbd>Ctrl+N</kbd> 建立新檔</li>
+<li><kbd>Ctrl+O</kbd> 開啟舊檔</li>
+<li><kbd>Ctrl+S</kbd> 存檔</li>
+<li><kbd>Ctrl+Shift+S</kbd> 另存</li>
+<li><kbd>Ctrl+K S</kbd> 全部存檔</li>
+<li><kbd>Ctrl+F4</kbd> 關閉</li>
+<li><kbd>Ctrl+K Ctrl+W</kbd> 全部關閉</li>
+<li><kbd>Ctrl+Shift+T</kbd> 重新開啟上次關閉之編譯</li>
+<li><kbd>Ctrl+Tab</kbd> 跳至下一個編譯<br>隨著編輯視窗多重開啟，透過指令可快速來回切換這些視窗紀錄，並可利用 <kbd>alt + ←</kbd> 或 <kbd>alt + →</kbd>來回切換紀錄歷史步驟。</li>
+<li><kbd>Ctrl+Shift+Tab</kbd> 跳至前一個編譯</li>
+<li><kbd>Ctrl+K P</kbd> 複製當前的檔案實體路徑</li>
+<li><kbd>Ctrl+K R</kbd> 檔案總管方式開啟檔案位置</li>
+<li><kbd>Ctrl+K O</kbd> 另啟動 VSCODE 對檔案編譯</li>
+</ul>
+<h2 id="Display-檢視項目"><a href="#Display-檢視項目" class="headerlink" title="Display 檢視項目"></a>Display 檢視項目</h2><ul>
+<li><kbd>F11 全畫面</li>
+<li><kbd>Ctrl+ = / -</kbd> 調整預覽比例</li>
+<li><kbd>Ctrl+Shift+E</kbd> 切換檔案總管之焦點</li>
+<li><kbd>Ctrl+Shift+F</kbd> 呼叫搜尋</li>
+<li><kbd>Ctrl+Shift+G</kbd> 呼叫 GIT</li>
+<li><kbd>Ctrl+Shift+D</kbd> 呼叫偵錯</li>
+<li><kbd>Ctrl+Shift+X</kbd> 呼叫延伸模組</li>
+<li><kbd>Ctrl+Shift+H</kbd> 呼叫替代</li>
+<li><kbd>Ctrl+Shift+J</kbd> 切換搜尋進階模式</li>
+<li><kbd>Ctrl+Shift+U</kbd> 呼叫輸出面板</li>
+<li><kbd>Ctrl+Shift+V</kbd> 開啟 MarkDown 預覽</li>
+<li><kbd>Ctrl+K V</kbd> 開啟 MarkDown 預覽於另側</li>
+<li><kbd>Ctrl+K Z</kbd> 開啟禪宗模式<br>想要單純乾淨的畫面，可以使用快捷鍵調整畫面，如需退出只須連續 <kbd>ESC</kbd> 兩次即可。如需要檔案總管可使用 <kbd>ctrl + shift + E</kbd>事後滑鼠拖曳退出。<h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2></li>
+<li><kbd>F9</kbd> 切換標記紅點</li>
+<li><kbd>F5</kbd> 開始/繼續偵錯</li>
+<li><kbd>Shift+F5</kbd> 停止偵錯</li>
+<li><kbd>F11 / Shift+F11</kbd> Step into/out</li>
+<li><kbd>F10</kbd> Step over</li>
+<li><kbd>Ctrl+K Ctrl+I</kbd> Show hover</li>
+</ul>
+<h2 id="Integrated-terminal-終端機"><a href="#Integrated-terminal-終端機" class="headerlink" title="Integrated terminal 終端機"></a>Integrated terminal 終端機</h2><ul>
+<li><kbd>Ctrl+`</kbd> 開啟終端機</li>
+<li><kbd>Ctrl+Shift+`</kbd> 新增終端機</li>
+<li><kbd>Ctrl+C</kbd> 複製</li>
+<li><kbd>Ctrl+V</kbd> 貼上</li>
+<li><kbd>Ctrl+↑ / ↓</kbd> 向上下滾動</li>
+<li><kbd>Shift+PgUp / PgDn</kbd> 向上下滾動單頁</li>
+<li><kbd>Ctrl+Home / End</kbd> 滾動至頂端尾端</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><kbd>ctrl on</kbd> 簡易查詢<br>停留在某函式或變數時，按下 ctrl 能簡易查詢說明。</li>
+<li>指令：切換大小寫<br>命令輸入 <code>&gt;transform</code>，能將所選取的英文大小寫或字首切換。<br><img src="https://i.imgur.com/wHUHLAk.png" alt="Image"></li>
+<li><kbd>ctrl + I</kbd> 觸發智能輸入建議<br><img src="https://i.imgur.com/Vc5juNu.gif" alt="intellisense"></li>
+</ul>
+<h1 id="Emmet-篇"><a href="#Emmet-篇" class="headerlink" title="Emmet 篇"></a>Emmet 篇</h1><p>VSCODE 內建支援 Emmet 的縮寫語法，對於 HTML/CSS 能提高編寫速度，類似 CSS 選擇器的觀念作為符號應用。當你輸入一段指定縮寫符號後，透過 tab 就能轉成對應之 HTML/CSS 樹狀元素。</p>
+<h2 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h2><ul>
+<li><kbd>element</kbd> 元素<br>直接輸入標籤名稱能得到完整元素結構。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- div --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- span --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>></kbd> 子代<br>與 CSS 選擇器相同觀念，指定元素關係為父子且可連續編列。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nav&gt;ul&gt;li --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>+</kbd> 兄弟<br>相鄰同層之編列，連續指定同層元素使用。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- div+p+bq --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>^</kbd> 上升父層<br>由於縮寫採連續性編寫，可能你需要返回上層繼續另一個編寫，此符號能讓你更彈性退回上層繼續編列。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- div+div&gt;p&gt;span+em --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  此時如果想對於 p 位置增加兄弟元素 bq，可以添加 `^` 退回 `&gt;` 上層 p 位置繼續編譯。</span></span><br><span class="line"><span class="comment">  div+div&gt;p&gt;span+em^bq</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  連續的 `^` 能連續退回相對上層位置</span></span><br><span class="line"><span class="comment">  div+div&gt;p&gt;span+em^^bq</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>*</kbd> 乘法<br>重複的元素輸出，可透過乘法觀念進行實現<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ul&gt;li*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>()</kbd> 群組化<br>將語法群組化能確保該段語法的優先執行，適合產生子樹狀結構規劃。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- div&gt;(header&gt;ul&gt;li*2&gt;a)+footer&gt;p --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- (div&gt;dl&gt;(dt+dd)*3)+footer&gt;p --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd># / .</kbd> ID 與 Class<br>與 CSS 選擇器觀念相同，你可以標籤名稱綁定 id 或 class 到輸出元素，如需多 class 於同一元素亦可輕易完成。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- #header --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"header"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- .title --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- form#search.wide --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"search"</span> <span class="attr">class</span>=<span class="string">"wide"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- p.class1.class2.class3 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"class1 class2 class3"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- div#header+div.page+div#footer.class1.class2.class3 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"header"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"footer"</span> <span class="attr">class</span>=<span class="string">"class1 class2 class3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>[attr1=* attr2=*]</kbd> 寫入屬性<br>若需指定元素屬性（包含自訂），可以與 CSS 選擇觀念一致進行添加綁定。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- p[title="Hello world"] --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">"Hello world"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- td[title="Hello world!" colspan=3] --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">title</span>=<span class="string">"Hello world!"</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- td[rowspan=2 colspan=3 title] --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">title</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- [a='value1' b="value2"] --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">a</span>=<span class="string">"value1"</span> <span class="attr">b</span>=<span class="string">"value2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>$</kbd> 項目編號<br>作為流水號作為文字編碼，每一個$代表 10 進位單元。額外添加 <code>@</code> 可控制降序或起始值。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ul&gt;li.item$*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item4"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item5"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;li.item$$$*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item001"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item002"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item003"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item004"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item005"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;li.item$@-*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item5"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item4"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;li.item$@3*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item4"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item5"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item6"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item7"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;li.item$@-3*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item7"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item6"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item5"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item4"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><kbd>{}</kbd> 文字串<br>能預先塞入元素內容文字。亦能整合 <code>$</code> 流水號使用。使用時注意擺放所謂的內容位置因不同有所差異。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- a&#123;Click me&#125; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;li&#123;item$&#125;*5 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>item1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>item2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>item3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>item4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>item5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">  注意&#123;&#125;的位置如果是緊貼於元素代表為該元素之內容</span></span><br><span class="line"><span class="comment">  a&#123;click&#125;+b&#123;here&#125;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>click<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>here<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  若&#123;&#125;的位置指定給子代，代表已歸入子代的內容範圍。雖然以內容值來探討相同結果，但後續之編寫已經入子代範圍。</span></span><br><span class="line"><span class="comment">  a&gt;&#123;click&#125;+b&#123;here&#125;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">  click<span class="tag">&lt;<span class="name">b</span>&gt;</span>here<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- p&#123;Click &#125;+a&#123;here&#125;+&#123; to continue&#125; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Click <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>here<span class="tag">&lt;/<span class="name">a</span>&gt;</span> to continue</span><br><span class="line"><span class="comment">&lt;!-- p&gt;&#123;Click &#125;+a&#123;here&#125;+&#123; to continue&#125; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  Click <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>here<span class="tag">&lt;/<span class="name">a</span>&gt;</span> to continue</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>隱式標籤<br>emmet 能預測列入編寫元素邏輯可能為 inline 或是 block 情況下，你能省略標籤名稱的輸入。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- .container --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- .wrap&gt;.content --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- em&gt;.class --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"class"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul&gt;.class --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"class"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- table&gt;.row&gt;.col --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Lorem 偽文本<br>可透過 Lorem 縮語產生約 30 單字的假文字串做為開發外觀測試，添加數字能控制單字數，也能輕易整合至其他縮語法，但必須是落於 <code>&gt;</code> 之後不可放入{}使用，若搭配 ID 或 class 將被當作隱式標籤運作。<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- lorem --&gt;</span></span><br><span class="line">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</span><br><span class="line"><span class="comment">&lt;!-- lorem5 --&gt;</span></span><br><span class="line">Lorem ipsum dolor sit amet.</span><br><span class="line"><span class="comment">&lt;!-- p*2&gt;lorem --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, quasi, corporis aut voluptate voluptatibus repudiandae odit odio quod veniam cupiditate, perferendis quisquam in. Quam, maiores fugit ducimus beatae veritatis vero.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Eaque delectus deserunt quod, itaque quos sapiente similique suscipit, atque tenetur corporis temporibus, sunt ea praesentium beatae impedit. Deleniti, error odit possimus rem at eos exercitationem sed hic labore fugit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ul.list&gt;lorem10.item*2 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, possimus!<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>Facere, accusantium asperiores? Ex, officiis. Odit nulla praesentium amet facere.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="HTML-轉換"><a href="#HTML-轉換" class="headerlink" title="HTML 轉換"></a>HTML 轉換</h2><p>emmet 除了提供縮寫語法，另外提供了 HTML 代碼轉換公式表收錄在 <a href="https://github.com/emmetio/emmet/blob/master/snippets/html.json" target="_blank" rel="noopener">snippets/html.json</a> 內，</p>
+<p>舉幾個例來說，你可以輸入 <code>!</code> 就能獲得 HTML5 的基本宣告結構，或輸入 <code>link:css</code> 快速宣告一個 CSS 外部樣式表元素。你不需要熟背太多只需記得輸入 <code>tag</code> 搭配 <code>:</code> ，屆時 VSCODE 會適時地提示您有哪些 emmet 的 HTML 轉換。以下為 emmet 完整轉換公式表：</p>
+<figure class="highlight json"><figcaption><span>snippets/html.json</span></figcaption><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"a"</span>: <span class="string">"a[href]"</span>,</span><br><span class="line">  <span class="attr">"a:blank"</span>: <span class="string">"a[href='http://$&#123;0&#125;' target='_blank' rel='noopener noreferrer']"</span>,</span><br><span class="line">  <span class="attr">"a:link"</span>: <span class="string">"a[href='http://$&#123;0&#125;']"</span>,</span><br><span class="line">  <span class="attr">"a:mail"</span>: <span class="string">"a[href='mailto:$&#123;0&#125;']"</span>,</span><br><span class="line">  <span class="attr">"a:tel"</span>: <span class="string">"a[href='tel:+$&#123;0&#125;']"</span>,</span><br><span class="line">  <span class="attr">"abbr"</span>: <span class="string">"abbr[title]"</span>,</span><br><span class="line">  <span class="attr">"acr|acronym"</span>: <span class="string">"acronym[title]"</span>,</span><br><span class="line">  <span class="attr">"base"</span>: <span class="string">"base[href]/"</span>,</span><br><span class="line">  <span class="attr">"basefont"</span>: <span class="string">"basefont/"</span>,</span><br><span class="line">  <span class="attr">"br"</span>: <span class="string">"br/"</span>,</span><br><span class="line">  <span class="attr">"frame"</span>: <span class="string">"frame/"</span>,</span><br><span class="line">  <span class="attr">"hr"</span>: <span class="string">"hr/"</span>,</span><br><span class="line">  <span class="attr">"bdo"</span>: <span class="string">"bdo[dir]"</span>,</span><br><span class="line">  <span class="attr">"bdo:r"</span>: <span class="string">"bdo[dir=rtl]"</span>,</span><br><span class="line">  <span class="attr">"bdo:l"</span>: <span class="string">"bdo[dir=ltr]"</span>,</span><br><span class="line">  <span class="attr">"col"</span>: <span class="string">"col/"</span>,</span><br><span class="line">  <span class="attr">"link"</span>: <span class="string">"link[rel=stylesheet href]/"</span>,</span><br><span class="line">  <span class="attr">"link:css"</span>: <span class="string">"link[href='$&#123;1:style&#125;.css']"</span>,</span><br><span class="line">  <span class="attr">"link:print"</span>: <span class="string">"link[href='$&#123;1:print&#125;.css' media=print]"</span>,</span><br><span class="line">  <span class="attr">"link:favicon"</span>: <span class="string">"link[rel='shortcut icon' type=image/x-icon href='$&#123;1:favicon.ico&#125;']"</span>,</span><br><span class="line">  <span class="attr">"link:mf|link:manifest"</span>: <span class="string">"link[rel='manifest' href='$&#123;1:manifest.json&#125;']"</span>,</span><br><span class="line">  <span class="attr">"link:touch"</span>: <span class="string">"link[rel=apple-touch-icon href='$&#123;1:favicon.png&#125;']"</span>,</span><br><span class="line">  <span class="attr">"link:rss"</span>: <span class="string">"link[rel=alternate type=application/rss+xml title=RSS href='$&#123;1:rss.xml&#125;']"</span>,</span><br><span class="line">  <span class="attr">"link:atom"</span>: <span class="string">"link[rel=alternate type=application/atom+xml title=Atom href='$&#123;1:atom.xml&#125;']"</span>,</span><br><span class="line">  <span class="attr">"link:im|link:import"</span>: <span class="string">"link[rel=import href='$&#123;1:component&#125;.html']"</span>,</span><br><span class="line">  <span class="attr">"meta"</span>: <span class="string">"meta/"</span>,</span><br><span class="line">  <span class="attr">"meta:utf"</span>: <span class="string">"meta[http-equiv=Content-Type content='text/html;charset=UTF-8']"</span>,</span><br><span class="line">  <span class="attr">"meta:vp"</span>: <span class="string">"meta[name=viewport content='width=$&#123;1:device-width&#125;, initial-scale=$&#123;2:1.0&#125;']"</span>,</span><br><span class="line">  <span class="attr">"meta:compat"</span>: <span class="string">"meta[http-equiv=X-UA-Compatible content='$&#123;1:IE=7&#125;']"</span>,</span><br><span class="line">  <span class="attr">"meta:edge"</span>: <span class="string">"meta:compat[content='$&#123;1:ie=edge&#125;']"</span>,</span><br><span class="line">  <span class="attr">"meta:redirect"</span>: <span class="string">"meta[http-equiv=refresh content='0; url=$&#123;1:http://example.com&#125;']"</span>,</span><br><span class="line">  <span class="attr">"meta:kw"</span>: <span class="string">"meta[name=keywords content]"</span>,</span><br><span class="line">  <span class="attr">"meta:desc"</span>: <span class="string">"meta[name=description content]"</span>,</span><br><span class="line">  <span class="attr">"style"</span>: <span class="string">"style"</span>,</span><br><span class="line">  <span class="attr">"script"</span>: <span class="string">"script"</span>,</span><br><span class="line">  <span class="attr">"script:src"</span>: <span class="string">"script[src]"</span>,</span><br><span class="line">  <span class="attr">"img"</span>: <span class="string">"img[src alt]/"</span>,</span><br><span class="line">  <span class="attr">"img:s|img:srcset"</span>: <span class="string">"img[srcset src alt]"</span>,</span><br><span class="line">  <span class="attr">"img:z|img:sizes"</span>: <span class="string">"img[sizes srcset src alt]"</span>,</span><br><span class="line">  <span class="attr">"picture"</span>: <span class="string">"picture"</span>,</span><br><span class="line">  <span class="attr">"src|source"</span>: <span class="string">"source/"</span>,</span><br><span class="line">  <span class="attr">"src:sc|source:src"</span>: <span class="string">"source[src type]"</span>,</span><br><span class="line">  <span class="attr">"src:s|source:srcset"</span>: <span class="string">"source[srcset]"</span>,</span><br><span class="line">  <span class="attr">"src:t|source:type"</span>: <span class="string">"source[srcset type='$&#123;1:image/&#125;']"</span>,</span><br><span class="line">  <span class="attr">"src:z|source:sizes"</span>: <span class="string">"source[sizes srcset]"</span>,</span><br><span class="line">  <span class="attr">"src:m|source:media"</span>: <span class="string">"source[media='($&#123;1:min-width: &#125;)' srcset]"</span>,</span><br><span class="line">  <span class="attr">"src:mt|source:media:type"</span>: <span class="string">"source:media[type='$&#123;2:image/&#125;']"</span>,</span><br><span class="line">  <span class="attr">"src:mz|source:media:sizes"</span>: <span class="string">"source:media[sizes srcset]"</span>,</span><br><span class="line">  <span class="attr">"src:zt|source:sizes:type"</span>: <span class="string">"source[sizes srcset type='$&#123;1:image/&#125;']"</span>,</span><br><span class="line">  <span class="attr">"iframe"</span>: <span class="string">"iframe[src frameborder=0]"</span>,</span><br><span class="line">  <span class="attr">"embed"</span>: <span class="string">"embed[src type]/"</span>,</span><br><span class="line">  <span class="attr">"object"</span>: <span class="string">"object[data type]"</span>,</span><br><span class="line">  <span class="attr">"param"</span>: <span class="string">"param[name value]/"</span>,</span><br><span class="line">  <span class="attr">"map"</span>: <span class="string">"map[name]"</span>,</span><br><span class="line">  <span class="attr">"area"</span>: <span class="string">"area[shape coords href alt]/"</span>,</span><br><span class="line">  <span class="attr">"area:d"</span>: <span class="string">"area[shape=default]"</span>,</span><br><span class="line">  <span class="attr">"area:c"</span>: <span class="string">"area[shape=circle]"</span>,</span><br><span class="line">  <span class="attr">"area:r"</span>: <span class="string">"area[shape=rect]"</span>,</span><br><span class="line">  <span class="attr">"area:p"</span>: <span class="string">"area[shape=poly]"</span>,</span><br><span class="line">  <span class="attr">"form"</span>: <span class="string">"form[action]"</span>,</span><br><span class="line">  <span class="attr">"form:get"</span>: <span class="string">"form[method=get]"</span>,</span><br><span class="line">  <span class="attr">"form:post"</span>: <span class="string">"form[method=post]"</span>,</span><br><span class="line">  <span class="attr">"label"</span>: <span class="string">"label[for]"</span>,</span><br><span class="line">  <span class="attr">"input"</span>: <span class="string">"input[type=$&#123;1:text&#125;]/"</span>,</span><br><span class="line">  <span class="attr">"inp"</span>: <span class="string">"input[name=$&#123;1&#125; id=$&#123;1&#125;]"</span>,</span><br><span class="line">  <span class="attr">"input:h|input:hidden"</span>: <span class="string">"input[type=hidden name]"</span>,</span><br><span class="line">  <span class="attr">"input:t|input:text"</span>: <span class="string">"inp[type=text]"</span>,</span><br><span class="line">  <span class="attr">"input:search"</span>: <span class="string">"inp[type=search]"</span>,</span><br><span class="line">  <span class="attr">"input:email"</span>: <span class="string">"inp[type=email]"</span>,</span><br><span class="line">  <span class="attr">"input:url"</span>: <span class="string">"inp[type=url]"</span>,</span><br><span class="line">  <span class="attr">"input:p|input:password"</span>: <span class="string">"inp[type=password]"</span>,</span><br><span class="line">  <span class="attr">"input:datetime"</span>: <span class="string">"inp[type=datetime]"</span>,</span><br><span class="line">  <span class="attr">"input:date"</span>: <span class="string">"inp[type=date]"</span>,</span><br><span class="line">  <span class="attr">"input:datetime-local"</span>: <span class="string">"inp[type=datetime-local]"</span>,</span><br><span class="line">  <span class="attr">"input:month"</span>: <span class="string">"inp[type=month]"</span>,</span><br><span class="line">  <span class="attr">"input:week"</span>: <span class="string">"inp[type=week]"</span>,</span><br><span class="line">  <span class="attr">"input:time"</span>: <span class="string">"inp[type=time]"</span>,</span><br><span class="line">  <span class="attr">"input:tel"</span>: <span class="string">"inp[type=tel]"</span>,</span><br><span class="line">  <span class="attr">"input:number"</span>: <span class="string">"inp[type=number]"</span>,</span><br><span class="line">  <span class="attr">"input:color"</span>: <span class="string">"inp[type=color]"</span>,</span><br><span class="line">  <span class="attr">"input:c|input:checkbox"</span>: <span class="string">"inp[type=checkbox]"</span>,</span><br><span class="line">  <span class="attr">"input:r|input:radio"</span>: <span class="string">"inp[type=radio]"</span>,</span><br><span class="line">  <span class="attr">"input:range"</span>: <span class="string">"inp[type=range]"</span>,</span><br><span class="line">  <span class="attr">"input:f|input:file"</span>: <span class="string">"inp[type=file]"</span>,</span><br><span class="line">  <span class="attr">"input:s|input:submit"</span>: <span class="string">"input[type=submit value]"</span>,</span><br><span class="line">  <span class="attr">"input:i|input:image"</span>: <span class="string">"input[type=image src alt]"</span>,</span><br><span class="line">  <span class="attr">"input:b|input:button"</span>: <span class="string">"input[type=button value]"</span>,</span><br><span class="line">  <span class="attr">"input:reset"</span>: <span class="string">"input:button[type=reset]"</span>,</span><br><span class="line">  <span class="attr">"isindex"</span>: <span class="string">"isindex/"</span>,</span><br><span class="line">  <span class="attr">"select"</span>: <span class="string">"select[name=$&#123;1&#125; id=$&#123;1&#125;]"</span>,</span><br><span class="line">  <span class="attr">"select:d|select:disabled"</span>: <span class="string">"select[disabled.]"</span>,</span><br><span class="line">  <span class="attr">"opt|option"</span>: <span class="string">"option[value]"</span>,</span><br><span class="line">  <span class="attr">"textarea"</span>: <span class="string">"textarea[name=$&#123;1&#125; id=$&#123;1&#125; cols=$&#123;2:30&#125; rows=$&#123;3:10&#125;]"</span>,</span><br><span class="line">  <span class="attr">"marquee"</span>: <span class="string">"marquee[behavior direction]"</span>,</span><br><span class="line">  <span class="attr">"menu:c|menu:context"</span>: <span class="string">"menu[type=context]"</span>,</span><br><span class="line">  <span class="attr">"menu:t|menu:toolbar"</span>: <span class="string">"menu[type=toolbar]"</span>,</span><br><span class="line">  <span class="attr">"video"</span>: <span class="string">"video[src]"</span>,</span><br><span class="line">  <span class="attr">"audio"</span>: <span class="string">"audio[src]"</span>,</span><br><span class="line">  <span class="attr">"html:xml"</span>: <span class="string">"html[xmlns=http://www.w3.org/1999/xhtml]"</span>,</span><br><span class="line">  <span class="attr">"keygen"</span>: <span class="string">"keygen/"</span>,</span><br><span class="line">  <span class="attr">"command"</span>: <span class="string">"command/"</span>,</span><br><span class="line">  <span class="attr">"btn:s|button:s|button:submit"</span>: <span class="string">"button[type=submit]"</span>,</span><br><span class="line">  <span class="attr">"btn:r|button:r|button:reset"</span>: <span class="string">"button[type=reset]"</span>,</span><br><span class="line">  <span class="attr">"btn:d|button:d|button:disabled"</span>: <span class="string">"button[disabled.]"</span>,</span><br><span class="line">  <span class="attr">"fst:d|fset:d|fieldset:d|fieldset:disabled"</span>: <span class="string">"fieldset[disabled.]"</span>,</span><br><span class="line">  <span class="attr">"bq"</span>: <span class="string">"blockquote"</span>,</span><br><span class="line">  <span class="attr">"fig"</span>: <span class="string">"figure"</span>,</span><br><span class="line">  <span class="attr">"figc"</span>: <span class="string">"figcaption"</span>,</span><br><span class="line">  <span class="attr">"pic"</span>: <span class="string">"picture"</span>,</span><br><span class="line">  <span class="attr">"ifr"</span>: <span class="string">"iframe"</span>,</span><br><span class="line">  <span class="attr">"emb"</span>: <span class="string">"embed"</span>,</span><br><span class="line">  <span class="attr">"obj"</span>: <span class="string">"object"</span>,</span><br><span class="line">  <span class="attr">"cap"</span>: <span class="string">"caption"</span>,</span><br><span class="line">  <span class="attr">"colg"</span>: <span class="string">"colgroup"</span>,</span><br><span class="line">  <span class="attr">"fst"</span>: <span class="string">"fieldset"</span>,</span><br><span class="line">  <span class="attr">"btn"</span>: <span class="string">"button"</span>,</span><br><span class="line">  <span class="attr">"optg"</span>: <span class="string">"optgroup"</span>,</span><br><span class="line">  <span class="attr">"tarea"</span>: <span class="string">"textarea"</span>,</span><br><span class="line">  <span class="attr">"leg"</span>: <span class="string">"legend"</span>,</span><br><span class="line">  <span class="attr">"sect"</span>: <span class="string">"section"</span>,</span><br><span class="line">  <span class="attr">"art"</span>: <span class="string">"article"</span>,</span><br><span class="line">  <span class="attr">"hdr"</span>: <span class="string">"header"</span>,</span><br><span class="line">  <span class="attr">"ftr"</span>: <span class="string">"footer"</span>,</span><br><span class="line">  <span class="attr">"adr"</span>: <span class="string">"address"</span>,</span><br><span class="line">  <span class="attr">"dlg"</span>: <span class="string">"dialog"</span>,</span><br><span class="line">  <span class="attr">"str"</span>: <span class="string">"strong"</span>,</span><br><span class="line">  <span class="attr">"prog"</span>: <span class="string">"progress"</span>,</span><br><span class="line">  <span class="attr">"mn"</span>: <span class="string">"main"</span>,</span><br><span class="line">  <span class="attr">"tem"</span>: <span class="string">"template"</span>,</span><br><span class="line">  <span class="attr">"fset"</span>: <span class="string">"fieldset"</span>,</span><br><span class="line">  <span class="attr">"datag"</span>: <span class="string">"datagrid"</span>,</span><br><span class="line">  <span class="attr">"datal"</span>: <span class="string">"datalist"</span>,</span><br><span class="line">  <span class="attr">"kg"</span>: <span class="string">"keygen"</span>,</span><br><span class="line">  <span class="attr">"out"</span>: <span class="string">"output"</span>,</span><br><span class="line">  <span class="attr">"det"</span>: <span class="string">"details"</span>,</span><br><span class="line">  <span class="attr">"sum"</span>: <span class="string">"summary"</span>,</span><br><span class="line">  <span class="attr">"cmd"</span>: <span class="string">"command"</span>,</span><br><span class="line">  <span class="attr">"ri:d|ri:dpr"</span>: <span class="string">"img:s"</span>,</span><br><span class="line">  <span class="attr">"ri:v|ri:viewport"</span>: <span class="string">"img:z"</span>,</span><br><span class="line">  <span class="attr">"ri:a|ri:art"</span>: <span class="string">"pic&gt;src:m+img"</span>,</span><br><span class="line">  <span class="attr">"ri:t|ri:type"</span>: <span class="string">"pic&gt;src:t+img"</span>,</span><br><span class="line">  <span class="attr">"!!!"</span>: <span class="string">"&#123;&lt;!DOCTYPE html&gt;&#125;"</span>,</span><br><span class="line">  <span class="attr">"doc"</span>: <span class="string">"html[lang=$&#123;lang&#125;]&gt;(head&gt;meta[charset=$&#123;charset&#125;]+meta:vp+title&#123;$&#123;1:Document&#125;&#125;)+body"</span>,</span><br><span class="line">  <span class="attr">"!|html:5"</span>: <span class="string">"!!!+doc"</span>,</span><br><span class="line">  <span class="attr">"c"</span>: <span class="string">"&#123;&lt;!-- $&#123;0&#125; --&gt;&#125;"</span>,</span><br><span class="line">  <span class="attr">"cc:ie"</span>: <span class="string">"&#123;&lt;!--[if IE]&gt;$&#123;0&#125;&lt;![endif]--&gt;&#125;"</span>,</span><br><span class="line">  <span class="attr">"cc:noie"</span>: <span class="string">"&#123;&lt;!--[if !IE]&gt;&lt;!--&gt;$&#123;0&#125;&lt;!--&lt;![endif]--&gt;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS-轉換"><a href="#CSS-轉換" class="headerlink" title="CSS 轉換"></a>CSS 轉換</h2><p>CSS 也有代碼轉換公式表，主要是將你的 CSS 屬性與值進行簡化到僅幾個字母代表與數字之組合。因此 CSS 屬性有多少，簡寫公式就會跟著有多少，相對來說背則會有一定的輔助運作與機制需先以了解。</p>
+<ul>
+<li>除了屬性也可填值<br>以範例來說明，可輸入 <code>m</code> 來轉換成 <code>margin:;</code> ，如果到此為止就太浪費了，你應該還會設定單位，不妨直接輸入一個 <code>m:10</code> 則會提供一個 <code>margin:10px</code> 的完整屬性值。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* m */</span></span><br><span class="line">  <span class="attribute">margin</span>: ;</span><br><span class="line">  <span class="comment">/* m:10 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+使用 <code>:</code> 符號來表示屬性與值兩者，可以直接省略該符號 (emmet 會自行判斷）。若是複合屬性填寫多值時請使用 <code>-</code> 分開，如果值為負數也用 <code>-</code> 來表示（兩者各自表述不衝突）。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* m10 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="comment">/* m-5 */</span></span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">5px</span>;</span><br><span class="line">  <span class="comment">/* p5-10 */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="comment">/* m-5-10 */</span></span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="comment">/* m-5--10 */</span></span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">5px</span> -<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>單位轉換<br>當你需要輸入數字作為單位（當為整數則預設 px，若為浮點數則會預判 em)，後綴添加單位可輕易切換到其他單位，或者使用已定義之單位代號。如果複合屬性有使用後綴單位就不要用 <code>-</code> 作為多值分開避免被當作負值使用。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* m10 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="comment">/* m1.5 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1.5em</span>;</span><br><span class="line">  <span class="comment">/* m1.8em-2rem */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1.8em</span> -<span class="number">2rem</span>;</span><br><span class="line">  <span class="comment">/* m5vw10vw */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">5vw</span> <span class="number">10vw</span>;</span><br><span class="line">  <span class="comment">/* m1.8em */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1.8em</span>;</span><br><span class="line">  <span class="comment">/* m2rem */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">2rem</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*已定義之單位代號*/</span></span><br><span class="line">  <span class="comment">/* p5p */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5%</span>;</span><br><span class="line">  <span class="comment">/* p5e */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5em</span>;</span><br><span class="line">  <span class="comment">/* p5x */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5ex</span>;</span><br><span class="line">  <span class="comment">/* p10p30-5e */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10%</span> <span class="number">30px</span> <span class="number">5em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>顏色碼<br>只對 16 進位代碼有效，偵測前綴符號 <code>#</code> 之值為顏色，若規則為不足 6 位元的參數為重複套入，若為 3 位元則為安全色碼。另外注意 vscode 的 emmet 色碼並沒有很完善於屬性值合併縮寫，也就是筆者不建議依賴此功能。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* c#3 */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333333</span>;</span><br><span class="line">  <span class="comment">/* bg#f0 */</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f0f0f0</span>;</span><br><span class="line">  <span class="comment">/* bdc#123 */</span></span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#112233</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>強制性 !<br>符號 <code>!</code> 代表為 <code>!important</code> 加入至值的縮寫<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* m30p! */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">30%</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>相容瀏覽器<br>多數前端設計師為了滿足不同的瀏覽器都能正常發揮 CSS，通常會痛苦將屬性寫成不同瀏覽器能理解的多筆屬性編寫。你可以在屬性前綴開頭使用 <code>-</code> 要求此屬性要跨相容的多屬性寫法，emmet 會根據公式內的屬性定義自動帶出有哪些相容之編寫語。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* -bdrs */</span></span><br><span class="line">  <span class="attribute">-webkit-border-radius</span>: ;</span><br><span class="line">  <span class="attribute">-moz-border-radius</span>: ;</span><br><span class="line">  <span class="attribute">border-radius</span>: ;</span><br><span class="line">  <span class="comment">/* -trf */</span></span><br><span class="line">  <span class="attribute">-webkit-transform</span>: ;</span><br><span class="line">  <span class="attribute">-moz-transform</span>: ;</span><br><span class="line">  <span class="attribute">-ms-transform</span>: ;</span><br><span class="line">  <span class="attribute">-o-transform</span>: ;</span><br><span class="line">  <span class="attribute">transform</span>: ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>模糊關鍵與公式表<br>介紹公式表之前，emmet 對於 CSS 屬性值的縮寫非常的多不容易全部記住，因此為了讓編寫更有效率提供了模糊搜索方式。你只需要簡單的填寫印象中的縮寫，會自動嘗試提供關鍵單詞的可能清單供給選擇，即便不是正式公式縮寫也能試著靠印象帶出。<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="comment">/* ov:h */</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="comment">/* ovh */</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="comment">/* oh */</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+公式表可以從官方的 <a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="noopener">Cheat Sheet</a> 了解，以下為 <a href="https://github.com/emmetio/emmet/blob/master/snippets/css.json" target="_blank" rel="noopener">emmet/snippets/css.json</a> 所抽取出來的轉換公式。<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"@f"</span>: <span class="string">"@font-face &#123;\n\tfont-family: $&#123;1&#125;;\n\tsrc: url($&#123;1&#125;);\n&#125;"</span>,</span><br><span class="line">  <span class="attr">"@ff"</span>: <span class="string">"@font-face &#123;\n\tfont-family: '$&#123;1:FontName&#125;';\n\tsrc: url('$&#123;2:FileName&#125;.eot');\n\tsrc: url('$&#123;2:FileName&#125;.eot?#iefix') format('embedded-opentype'),\n\t\t url('$&#123;2:FileName&#125;.woff') format('woff'),\n\t\t url('$&#123;2:FileName&#125;.ttf') format('truetype'),\n\t\t url('$&#123;2:FileName&#125;.svg#$&#123;1:FontName&#125;') format('svg');\n\tfont-style: $&#123;3:normal&#125;;\n\tfont-weight: $&#123;4:normal&#125;;\n&#125;"</span>,</span><br><span class="line">  <span class="attr">"@i|@import"</span>: <span class="string">"@import url($&#123;0&#125;);"</span>,</span><br><span class="line">  <span class="attr">"@kf"</span>: <span class="string">"@keyframes $&#123;1:identifier&#125; &#123;\n\t$&#123;2&#125;\n&#125;"</span>,</span><br><span class="line">  <span class="attr">"@m|@media"</span>: <span class="string">"@media $&#123;1:screen&#125; &#123;\n\t$&#123;0&#125;\n&#125;"</span>,</span><br><span class="line">  <span class="attr">"ac"</span>: <span class="string">"align-content:start|end|flex-start|flex-end|center|space-between|space-around|stretch|space-evenly"</span>,</span><br><span class="line">  <span class="attr">"ai"</span>: <span class="string">"align-items:start|end|flex-start|flex-end|center|baseline|stretch"</span>,</span><br><span class="line">  <span class="attr">"anim"</span>: <span class="string">"animation:$&#123;1:name&#125; $&#123;2:duration&#125; $&#123;3:timing-function&#125; $&#123;4:delay&#125; $&#123;5:iteration-count&#125; $&#123;6:direction&#125; $&#123;7:fill-mode&#125;"</span>,</span><br><span class="line">  <span class="attr">"animdel"</span>: <span class="string">"animation-delay:time"</span>,</span><br><span class="line">  <span class="attr">"animdir"</span>: <span class="string">"animation-direction:normal|reverse|alternate|alternate-reverse"</span>,</span><br><span class="line">  <span class="attr">"animdur"</span>: <span class="string">"animation-duration:$&#123;1:0&#125;s"</span>,</span><br><span class="line">  <span class="attr">"animfm"</span>: <span class="string">"animation-fill-mode:both|forwards|backwards"</span>,</span><br><span class="line">  <span class="attr">"animic"</span>: <span class="string">"animation-iteration-count:1|infinite"</span>,</span><br><span class="line">  <span class="attr">"animn"</span>: <span class="string">"animation-name"</span>,</span><br><span class="line">  <span class="attr">"animps"</span>: <span class="string">"animation-play-state:running|paused"</span>,</span><br><span class="line">  <span class="attr">"animtf"</span>: <span class="string">"animation-timing-function:linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier($&#123;1:0.1&#125;, $&#123;2:0.7&#125;, $&#123;3:1.0&#125;, $&#123;3:0.1&#125;)"</span>,</span><br><span class="line">  <span class="attr">"ap"</span>: <span class="string">"appearance:none"</span>,</span><br><span class="line">  <span class="attr">"as"</span>: <span class="string">"align-self:start|end|auto|flex-start|flex-end|center|baseline|stretch"</span>,</span><br><span class="line">  <span class="attr">"b"</span>: <span class="string">"bottom"</span>,</span><br><span class="line">  <span class="attr">"bd"</span>: <span class="string">"border:$&#123;1:1px&#125; $&#123;2:solid&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdb"</span>: <span class="string">"border-bottom:$&#123;1:1px&#125; $&#123;2:solid&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdbc"</span>: <span class="string">"border-bottom-color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdbi"</span>: <span class="string">"border-bottom-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bdbk"</span>: <span class="string">"border-break:close"</span>,</span><br><span class="line">  <span class="attr">"bdbli"</span>: <span class="string">"border-bottom-left-image:url($&#123;0&#125;)|continue"</span>,</span><br><span class="line">  <span class="attr">"bdblrs"</span>: <span class="string">"border-bottom-left-radius"</span>,</span><br><span class="line">  <span class="attr">"bdbri"</span>: <span class="string">"border-bottom-right-image:url($&#123;0&#125;)|continue"</span>,</span><br><span class="line">  <span class="attr">"bdbrrs"</span>: <span class="string">"border-bottom-right-radius"</span>,</span><br><span class="line">  <span class="attr">"bdbs"</span>: <span class="string">"border-bottom-style"</span>,</span><br><span class="line">  <span class="attr">"bdbw"</span>: <span class="string">"border-bottom-width"</span>,</span><br><span class="line">  <span class="attr">"bdc"</span>: <span class="string">"border-color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdci"</span>: <span class="string">"border-corner-image:url($&#123;0&#125;)|continue"</span>,</span><br><span class="line">  <span class="attr">"bdcl"</span>: <span class="string">"border-collapse:collapse|separate"</span>,</span><br><span class="line">  <span class="attr">"bdf"</span>: <span class="string">"border-fit:repeat|clip|scale|stretch|overwrite|overflow|space"</span>,</span><br><span class="line">  <span class="attr">"bdi"</span>: <span class="string">"border-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bdl"</span>: <span class="string">"border-left:$&#123;1:1px&#125; $&#123;2:solid&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdlc"</span>: <span class="string">"border-left-color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdlen"</span>: <span class="string">"border-length"</span>,</span><br><span class="line">  <span class="attr">"bdli"</span>: <span class="string">"border-left-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bdls"</span>: <span class="string">"border-left-style"</span>,</span><br><span class="line">  <span class="attr">"bdlw"</span>: <span class="string">"border-left-width"</span>,</span><br><span class="line">  <span class="attr">"bdr"</span>: <span class="string">"border-right:$&#123;1:1px&#125; $&#123;2:solid&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdrc"</span>: <span class="string">"border-right-color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdri"</span>: <span class="string">"border-right-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bdrs"</span>: <span class="string">"border-radius"</span>,</span><br><span class="line">  <span class="attr">"bdrst"</span>: <span class="string">"border-right-style"</span>,</span><br><span class="line">  <span class="attr">"bdrw"</span>: <span class="string">"border-right-width"</span>,</span><br><span class="line">  <span class="attr">"bds"</span>: <span class="string">"border-style:none|hidden|dotted|dashed|solid|double|dot-dash|dot-dot-dash|wave|groove|ridge|inset|outset"</span>,</span><br><span class="line">  <span class="attr">"bdsp"</span>: <span class="string">"border-spacing"</span>,</span><br><span class="line">  <span class="attr">"bdt"</span>: <span class="string">"border-top:$&#123;1:1px&#125; $&#123;2:solid&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdtc"</span>: <span class="string">"border-top-color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bdti"</span>: <span class="string">"border-top-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bdtli"</span>: <span class="string">"border-top-left-image:url($&#123;0&#125;)|continue"</span>,</span><br><span class="line">  <span class="attr">"bdtlrs"</span>: <span class="string">"border-top-left-radius"</span>,</span><br><span class="line">  <span class="attr">"bdtri"</span>: <span class="string">"border-top-right-image:url($&#123;0&#125;)|continue"</span>,</span><br><span class="line">  <span class="attr">"bdtrrs"</span>: <span class="string">"border-top-right-radius"</span>,</span><br><span class="line">  <span class="attr">"bdts"</span>: <span class="string">"border-top-style"</span>,</span><br><span class="line">  <span class="attr">"bdtw"</span>: <span class="string">"border-top-width"</span>,</span><br><span class="line">  <span class="attr">"bdw"</span>: <span class="string">"border-width"</span>,</span><br><span class="line">  <span class="attr">"bfv"</span>: <span class="string">"backface-visibility:hidden|visible"</span>,</span><br><span class="line">  <span class="attr">"bg"</span>: <span class="string">"background:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"bga"</span>: <span class="string">"background-attachment:fixed|scroll"</span>,</span><br><span class="line">  <span class="attr">"bgbk"</span>: <span class="string">"background-break:bounding-box|each-box|continuous"</span>,</span><br><span class="line">  <span class="attr">"bgc"</span>: <span class="string">"background-color:#$&#123;1:fff&#125;"</span>,</span><br><span class="line">  <span class="attr">"bgcp"</span>: <span class="string">"background-clip:padding-box|border-box|content-box|no-clip"</span>,</span><br><span class="line">  <span class="attr">"bgi"</span>: <span class="string">"background-image:url($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"bgo"</span>: <span class="string">"background-origin:padding-box|border-box|content-box"</span>,</span><br><span class="line">  <span class="attr">"bgp"</span>: <span class="string">"background-position:$&#123;1:0&#125; $&#123;2:0&#125;"</span>,</span><br><span class="line">  <span class="attr">"bgpx"</span>: <span class="string">"background-position-x"</span>,</span><br><span class="line">  <span class="attr">"bgpy"</span>: <span class="string">"background-position-y"</span>,</span><br><span class="line">  <span class="attr">"bgr"</span>: <span class="string">"background-repeat:no-repeat|repeat-x|repeat-y|space|round"</span>,</span><br><span class="line">  <span class="attr">"bgsz"</span>: <span class="string">"background-size:contain|cover"</span>,</span><br><span class="line">  <span class="attr">"bxsh"</span>: <span class="string">"box-shadow:$&#123;1:inset &#125;$&#123;2:hoff&#125; $&#123;3:voff&#125; $&#123;4:blur&#125; $&#123;5:#000&#125;|none"</span>,</span><br><span class="line">  <span class="attr">"bxsz"</span>: <span class="string">"box-sizing:border-box|content-box|border-box"</span>,</span><br><span class="line">  <span class="attr">"c"</span>: <span class="string">"color:$&#123;1:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"cl"</span>: <span class="string">"clear:both|left|right|none"</span>,</span><br><span class="line">  <span class="attr">"cm"</span>: <span class="string">"/* $&#123;0&#125; */"</span>,</span><br><span class="line">  <span class="attr">"cnt"</span>: <span class="string">"content:'$&#123;0&#125;'|normal|open-quote|no-open-quote|close-quote|no-close-quote|attr($&#123;0&#125;)|counter($&#123;0&#125;)|counters($&#123;0&#125;)"</span>,</span><br><span class="line">  <span class="attr">"coi"</span>: <span class="string">"counter-increment"</span>,</span><br><span class="line">  <span class="attr">"colm"</span>: <span class="string">"columns"</span>,</span><br><span class="line">  <span class="attr">"colmc"</span>: <span class="string">"column-count"</span>,</span><br><span class="line">  <span class="attr">"colmf"</span>: <span class="string">"column-fill"</span>,</span><br><span class="line">  <span class="attr">"colmg"</span>: <span class="string">"column-gap"</span>,</span><br><span class="line">  <span class="attr">"colmr"</span>: <span class="string">"column-rule"</span>,</span><br><span class="line">  <span class="attr">"colmrc"</span>: <span class="string">"column-rule-color"</span>,</span><br><span class="line">  <span class="attr">"colmrs"</span>: <span class="string">"column-rule-style"</span>,</span><br><span class="line">  <span class="attr">"colmrw"</span>: <span class="string">"column-rule-width"</span>,</span><br><span class="line">  <span class="attr">"colms"</span>: <span class="string">"column-span"</span>,</span><br><span class="line">  <span class="attr">"colmw"</span>: <span class="string">"column-width"</span>,</span><br><span class="line">  <span class="attr">"cor"</span>: <span class="string">"counter-reset"</span>,</span><br><span class="line">  <span class="attr">"cp"</span>: <span class="string">"clip:auto|rect($&#123;1:top&#125; $&#123;2:right&#125; $&#123;3:bottom&#125; $&#123;4:left&#125;)"</span>,</span><br><span class="line">  <span class="attr">"cps"</span>: <span class="string">"caption-side:top|bottom"</span>,</span><br><span class="line">  <span class="attr">"cur"</span>: <span class="string">"cursor:pointer|auto|default|crosshair|hand|help|move|pointer|text"</span>,</span><br><span class="line">  <span class="attr">"d"</span>: <span class="string">"display:block|none|flex|inline-flex|inline|inline-block|grid|inline-grid|subgrid|list-item|run-in|compact|table|inline-table|table-caption|table-column|table-column-group|table-header-group|table-footer-group|table-row|table-row-group|table-cell|ruby|ruby-base|ruby-base-group|ruby-text|ruby-text-group"</span>,</span><br><span class="line">  <span class="attr">"ec"</span>: <span class="string">"empty-cells:show|hide"</span>,</span><br><span class="line">  <span class="attr">"f"</span>: <span class="string">"font:$&#123;1:1em&#125; $&#123;2:sans-serif&#125;"</span>,</span><br><span class="line">  <span class="attr">"fd"</span>: <span class="string">"font-display:auto|block|swap|fallback|optional"</span>,</span><br><span class="line">  <span class="attr">"fef"</span>: <span class="string">"font-effect:none|engrave|emboss|outline"</span>,</span><br><span class="line">  <span class="attr">"fem"</span>: <span class="string">"font-emphasize"</span>,</span><br><span class="line">  <span class="attr">"femp"</span>: <span class="string">"font-emphasize-position:before|after"</span>,</span><br><span class="line">  <span class="attr">"fems"</span>: <span class="string">"font-emphasize-style:none|accent|dot|circle|disc"</span>,</span><br><span class="line">  <span class="attr">"ff"</span>: <span class="string">"font-family:serif|sans-serif|cursive|fantasy|monospace"</span>,</span><br><span class="line">  <span class="attr">"fft"</span>: <span class="string">"font-family:\"Times New Roman\", Times, Baskerville, Georgia, serif"</span>,</span><br><span class="line">  <span class="attr">"ffa"</span>: <span class="string">"font-family:Arial, \"Helvetica Neue\", Helvetica, sans-serif"</span>,</span><br><span class="line">  <span class="attr">"ffv"</span>: <span class="string">"font-family:Verdana, Geneva, sans-serif"</span>,</span><br><span class="line">  <span class="attr">"fl"</span>: <span class="string">"float:left|right|none"</span>,</span><br><span class="line">  <span class="attr">"fs"</span>: <span class="string">"font-style:italic|normal|oblique"</span>,</span><br><span class="line">  <span class="attr">"fsm"</span>: <span class="string">"font-smoothing:antialiased|subpixel-antialiased|none"</span>,</span><br><span class="line">  <span class="attr">"fst"</span>: <span class="string">"font-stretch:normal|ultra-condensed|extra-condensed|condensed|semi-condensed|semi-expanded|expanded|extra-expanded|ultra-expanded"</span>,</span><br><span class="line">  <span class="attr">"fv"</span>: <span class="string">"font-variant:normal|small-caps"</span>,</span><br><span class="line">  <span class="attr">"fvs"</span>: <span class="string">"font-variation-settings:normal|inherit|initial|unset"</span>,</span><br><span class="line">  <span class="attr">"fw"</span>: <span class="string">"font-weight:normal|bold|bolder|lighter"</span>,</span><br><span class="line">  <span class="attr">"fx"</span>: <span class="string">"flex"</span>,</span><br><span class="line">  <span class="attr">"fxb"</span>: <span class="string">"flex-basis:fill|max-content|min-content|fit-content|content"</span>,</span><br><span class="line">  <span class="attr">"fxd"</span>: <span class="string">"flex-direction:row|row-reverse|column|column-reverse"</span>,</span><br><span class="line">  <span class="attr">"fxf"</span>: <span class="string">"flex-flow"</span>,</span><br><span class="line">  <span class="attr">"fxg"</span>: <span class="string">"flex-grow"</span>,</span><br><span class="line">  <span class="attr">"fxsh"</span>: <span class="string">"flex-shrink"</span>,</span><br><span class="line">  <span class="attr">"fxw"</span>: <span class="string">"flex-wrap:nowrap|wrap|wrap-reverse"</span>,</span><br><span class="line">  <span class="attr">"fsz"</span>: <span class="string">"font-size"</span>,</span><br><span class="line">  <span class="attr">"fsza"</span>: <span class="string">"font-size-adjust"</span>,</span><br><span class="line">  <span class="attr">"gtc"</span>: <span class="string">"grid-template-columns:repeat()|minmax()"</span>,</span><br><span class="line">  <span class="attr">"gtr"</span>: <span class="string">"grid-template-rows:repeat()|minmax()"</span>,</span><br><span class="line">  <span class="attr">"gta"</span>: <span class="string">"grid-template-areas"</span>,</span><br><span class="line">  <span class="attr">"gt"</span>: <span class="string">"grid-template"</span>,</span><br><span class="line">  <span class="attr">"gg"</span>: <span class="string">"grid-gap"</span>,</span><br><span class="line">  <span class="attr">"gcg"</span>: <span class="string">"grid-column-gap"</span>,</span><br><span class="line">  <span class="attr">"grg"</span>: <span class="string">"grid-row-gap"</span>,</span><br><span class="line">  <span class="attr">"gac"</span>: <span class="string">"grid-auto-columns:auto|minmax()"</span>,</span><br><span class="line">  <span class="attr">"gar"</span>: <span class="string">"grid-auto-rows:auto|minmax()"</span>,</span><br><span class="line">  <span class="attr">"gaf"</span>: <span class="string">"grid-auto-flow:row|column|dense|inherit|initial|unset"</span>,</span><br><span class="line">  <span class="attr">"gd"</span>: <span class="string">"grid"</span>,</span><br><span class="line">  <span class="attr">"gc"</span>: <span class="string">"grid-column"</span>,</span><br><span class="line">  <span class="attr">"gcs"</span>: <span class="string">"grid-column-start"</span>,</span><br><span class="line">  <span class="attr">"gce"</span>: <span class="string">"grid-column-end"</span>,</span><br><span class="line">  <span class="attr">"gr"</span>: <span class="string">"grid-row"</span>,</span><br><span class="line">  <span class="attr">"grs"</span>: <span class="string">"grid-row-start"</span>,</span><br><span class="line">  <span class="attr">"gre"</span>: <span class="string">"grid-row-end"</span>,</span><br><span class="line">  <span class="attr">"ga"</span>: <span class="string">"grid-area"</span>,</span><br><span class="line">  <span class="attr">"h"</span>: <span class="string">"height"</span>,</span><br><span class="line">  <span class="attr">"jc"</span>: <span class="string">"justify-content:start|end|stretch|flex-start|flex-end|center|space-between|space-around|space-evenly"</span>,</span><br><span class="line">  <span class="attr">"ji"</span>: <span class="string">"justify-items:start|end|center|stretch"</span>,</span><br><span class="line">  <span class="attr">"js"</span>: <span class="string">"justify-self:start|end|center|stretch"</span>,</span><br><span class="line">  <span class="attr">"l"</span>: <span class="string">"left"</span>,</span><br><span class="line">  <span class="attr">"lg"</span>: <span class="string">"background-image:linear-gradient($&#123;1&#125;)"</span>,</span><br><span class="line">  <span class="attr">"lh"</span>: <span class="string">"line-height"</span>,</span><br><span class="line">  <span class="attr">"lis"</span>: <span class="string">"list-style"</span>,</span><br><span class="line">  <span class="attr">"lisi"</span>: <span class="string">"list-style-image"</span>,</span><br><span class="line">  <span class="attr">"lisp"</span>: <span class="string">"list-style-position:inside|outside"</span>,</span><br><span class="line">  <span class="attr">"list"</span>: <span class="string">"list-style-type:disc|circle|square|decimal|decimal-leading-zero|lower-roman|upper-roman"</span>,</span><br><span class="line">  <span class="attr">"lts"</span>: <span class="string">"letter-spacing:normal"</span>,</span><br><span class="line">  <span class="attr">"m"</span>: <span class="string">"margin"</span>,</span><br><span class="line">  <span class="attr">"mah"</span>: <span class="string">"max-height"</span>,</span><br><span class="line">  <span class="attr">"mar"</span>: <span class="string">"max-resolution"</span>,</span><br><span class="line">  <span class="attr">"maw"</span>: <span class="string">"max-width"</span>,</span><br><span class="line">  <span class="attr">"mb"</span>: <span class="string">"margin-bottom"</span>,</span><br><span class="line">  <span class="attr">"mih"</span>: <span class="string">"min-height"</span>,</span><br><span class="line">  <span class="attr">"mir"</span>: <span class="string">"min-resolution"</span>,</span><br><span class="line">  <span class="attr">"miw"</span>: <span class="string">"min-width"</span>,</span><br><span class="line">  <span class="attr">"ml"</span>: <span class="string">"margin-left"</span>,</span><br><span class="line">  <span class="attr">"mr"</span>: <span class="string">"margin-right"</span>,</span><br><span class="line">  <span class="attr">"mt"</span>: <span class="string">"margin-top"</span>,</span><br><span class="line">  <span class="attr">"ol"</span>: <span class="string">"outline"</span>,</span><br><span class="line">  <span class="attr">"olc"</span>: <span class="string">"outline-color:$&#123;1:#000&#125;|invert"</span>,</span><br><span class="line">  <span class="attr">"olo"</span>: <span class="string">"outline-offset"</span>,</span><br><span class="line">  <span class="attr">"ols"</span>: <span class="string">"outline-style:none|dotted|dashed|solid|double|groove|ridge|inset|outset"</span>,</span><br><span class="line">  <span class="attr">"olw"</span>: <span class="string">"outline-width|thin|medium|thick"</span>,</span><br><span class="line">  <span class="attr">"op"</span>: <span class="string">"opacity"</span>,</span><br><span class="line">  <span class="attr">"ord"</span>: <span class="string">"order"</span>,</span><br><span class="line">  <span class="attr">"ori"</span>: <span class="string">"orientation:landscape|portrait"</span>,</span><br><span class="line">  <span class="attr">"orp"</span>: <span class="string">"orphans"</span>,</span><br><span class="line">  <span class="attr">"ov"</span>: <span class="string">"overflow:hidden|visible|hidden|scroll|auto"</span>,</span><br><span class="line">  <span class="attr">"ovs"</span>: <span class="string">"overflow-style:scrollbar|auto|scrollbar|panner|move|marquee"</span>,</span><br><span class="line">  <span class="attr">"ovx"</span>: <span class="string">"overflow-x:hidden|visible|hidden|scroll|auto"</span>,</span><br><span class="line">  <span class="attr">"ovy"</span>: <span class="string">"overflow-y:hidden|visible|hidden|scroll|auto"</span>,</span><br><span class="line">  <span class="attr">"p"</span>: <span class="string">"padding"</span>,</span><br><span class="line">  <span class="attr">"pb"</span>: <span class="string">"padding-bottom"</span>,</span><br><span class="line">  <span class="attr">"pgba"</span>: <span class="string">"page-break-after:auto|always|left|right"</span>,</span><br><span class="line">  <span class="attr">"pgbb"</span>: <span class="string">"page-break-before:auto|always|left|right"</span>,</span><br><span class="line">  <span class="attr">"pgbi"</span>: <span class="string">"page-break-inside:auto|avoid"</span>,</span><br><span class="line">  <span class="attr">"pl"</span>: <span class="string">"padding-left"</span>,</span><br><span class="line">  <span class="attr">"pos"</span>: <span class="string">"position:relative|absolute|relative|fixed|static"</span>,</span><br><span class="line">  <span class="attr">"pr"</span>: <span class="string">"padding-right"</span>,</span><br><span class="line">  <span class="attr">"pt"</span>: <span class="string">"padding-top"</span>,</span><br><span class="line">  <span class="attr">"q"</span>: <span class="string">"quotes"</span>,</span><br><span class="line">  <span class="attr">"qen"</span>: <span class="string">"quotes:'\\201C' '\\201D' '\\2018' '\\2019'"</span>,</span><br><span class="line">  <span class="attr">"qru"</span>: <span class="string">"quotes:'\\00AB' '\\00BB' '\\201E' '\\201C'"</span>,</span><br><span class="line">  <span class="attr">"r"</span>: <span class="string">"right"</span>,</span><br><span class="line">  <span class="attr">"rsz"</span>: <span class="string">"resize:none|both|horizontal|vertical"</span>,</span><br><span class="line">  <span class="attr">"t"</span>: <span class="string">"top"</span>,</span><br><span class="line">  <span class="attr">"ta"</span>: <span class="string">"text-align:left|center|right|justify"</span>,</span><br><span class="line">  <span class="attr">"tal"</span>: <span class="string">"text-align-last:left|center|right"</span>,</span><br><span class="line">  <span class="attr">"tbl"</span>: <span class="string">"table-layout:fixed"</span>,</span><br><span class="line">  <span class="attr">"td"</span>: <span class="string">"text-decoration:none|underline|overline|line-through"</span>,</span><br><span class="line">  <span class="attr">"te"</span>: <span class="string">"text-emphasis:none|accent|dot|circle|disc|before|after"</span>,</span><br><span class="line">  <span class="attr">"th"</span>: <span class="string">"text-height:auto|font-size|text-size|max-size"</span>,</span><br><span class="line">  <span class="attr">"ti"</span>: <span class="string">"text-indent"</span>,</span><br><span class="line">  <span class="attr">"tj"</span>: <span class="string">"text-justify:auto|inter-word|inter-ideograph|inter-cluster|distribute|kashida|tibetan"</span>,</span><br><span class="line">  <span class="attr">"to"</span>: <span class="string">"text-outline:$&#123;1:0&#125; $&#123;2:0&#125; $&#123;3:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"tov"</span>: <span class="string">"text-overflow:ellipsis|clip"</span>,</span><br><span class="line">  <span class="attr">"tr"</span>: <span class="string">"text-replace"</span>,</span><br><span class="line">  <span class="attr">"trf"</span>: <span class="string">"transform:$&#123;1&#125;|skewX($&#123;1:angle&#125;)|skewY($&#123;1:angle&#125;)|scale($&#123;1:x&#125;, $&#123;2:y&#125;)|scaleX($&#123;1:x&#125;)|scaleY($&#123;1:y&#125;)|scaleZ($&#123;1:z&#125;)|scale3d($&#123;1:x&#125;, $&#123;2:y&#125;, $&#123;3:z&#125;)|rotate($&#123;1:angle&#125;)|rotateX($&#123;1:angle&#125;)|rotateY($&#123;1:angle&#125;)|rotateZ($&#123;1:angle&#125;)|translate($&#123;1:x&#125;, $&#123;2:y&#125;)|translateX($&#123;1:x&#125;)|translateY($&#123;1:y&#125;)|translateZ($&#123;1:z&#125;)|translate3d($&#123;1:tx&#125;, $&#123;2:ty&#125;, $&#123;3:tz&#125;)"</span>,</span><br><span class="line">  <span class="attr">"trfo"</span>: <span class="string">"transform-origin"</span>,</span><br><span class="line">  <span class="attr">"trfs"</span>: <span class="string">"transform-style:preserve-3d"</span>,</span><br><span class="line">  <span class="attr">"trs"</span>: <span class="string">"transition:$&#123;1:prop&#125; $&#123;2:time&#125;"</span>,</span><br><span class="line">  <span class="attr">"trsde"</span>: <span class="string">"transition-delay:$&#123;1:time&#125;"</span>,</span><br><span class="line">  <span class="attr">"trsdu"</span>: <span class="string">"transition-duration:$&#123;1:time&#125;"</span>,</span><br><span class="line">  <span class="attr">"trsp"</span>: <span class="string">"transition-property:$&#123;1:prop&#125;"</span>,</span><br><span class="line">  <span class="attr">"trstf"</span>: <span class="string">"transition-timing-function:$&#123;1:fn&#125;"</span>,</span><br><span class="line">  <span class="attr">"tsh"</span>: <span class="string">"text-shadow:$&#123;1:hoff&#125; $&#123;2:voff&#125; $&#123;3:blur&#125; $&#123;4:#000&#125;"</span>,</span><br><span class="line">  <span class="attr">"tt"</span>: <span class="string">"text-transform:uppercase|lowercase|capitalize|none"</span>,</span><br><span class="line">  <span class="attr">"tw"</span>: <span class="string">"text-wrap:none|normal|unrestricted|suppress"</span>,</span><br><span class="line">  <span class="attr">"us"</span>: <span class="string">"user-select:none"</span>,</span><br><span class="line">  <span class="attr">"v"</span>: <span class="string">"visibility:hidden|visible|collapse"</span>,</span><br><span class="line">  <span class="attr">"va"</span>: <span class="string">"vertical-align:top|super|text-top|middle|baseline|bottom|text-bottom|sub"</span>,</span><br><span class="line">  <span class="attr">"w"</span>: <span class="string">"width"</span>,</span><br><span class="line">  <span class="attr">"whs"</span>: <span class="string">"white-space:nowrap|pre|pre-wrap|pre-line|normal"</span>,</span><br><span class="line">  <span class="attr">"whsc"</span>: <span class="string">"white-space-collapse:normal|keep-all|loose|break-strict|break-all"</span>,</span><br><span class="line">  <span class="attr">"wid"</span>: <span class="string">"widows"</span>,</span><br><span class="line">  <span class="attr">"wm"</span>: <span class="string">"writing-mode:lr-tb|lr-tb|lr-bt|rl-tb|rl-bt|tb-rl|tb-lr|bt-lr|bt-rl"</span>,</span><br><span class="line">  <span class="attr">"wob"</span>: <span class="string">"word-break:normal|keep-all|break-all"</span>,</span><br><span class="line">  <span class="attr">"wos"</span>: <span class="string">"word-spacing"</span>,</span><br><span class="line">  <span class="attr">"wow"</span>: <span class="string">"word-wrap:none|unrestricted|suppress|break-word|normal"</span>,</span><br><span class="line">  <span class="attr">"z"</span>: <span class="string">"z-index"</span>,</span><br><span class="line">  <span class="attr">"zom"</span>: <span class="string">"zoom:1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="GIT-篇"><a href="#GIT-篇" class="headerlink" title="GIT 篇"></a>GIT 篇</h1><p>操作 GIT 本身建議還是以 command 指令方式下達，VSCode 有終端機能輸入指令，而部分視窗化操作 VSCode 能協助你透過一些滑鼠點擊來完成。</p>
+<ul>
+<li>指令：切換工作樹狀+-呈現<br>僅用於 git 比較時，工作樹狀編譯下可命令輸入 <code>&gt;toggle inline view</code> 切換內嵌檢視方式。</li>
+<li>Changs 變更：<br>查詢檔案與快照的差異性 diff，透過顏色差異做檢視。<br><img src="https://i.imgur.com/Eaeb9s7.gif" alt="msee-changes"></li>
+<li>Checkout Branch 切換分支<br>提供分支切換功能，也提供建立分支等作業。<br><img src="https://i.imgur.com/7Jzl0v1.gif" alt="mswitch-branch"></li>
+<li>Stage Change 列入暫存<br>可透過 <code>+</code> 符號將修改的文件加入 Stage 內，可透過 <code>-</code> 退出暫存。<br><img src="https://i.imgur.com/OxXz1YG.gif" alt="mstage-unstage"></li>
+<li>Undo last commit 取消上次提交<br>等於 <code>git reset HEAD~</code> 指令，還原到上一個提交狀態。<br><img src="https://i.imgur.com/6RtzpjS.gif" alt="mundo-last-commit"></li>
+<li>Gutter indicators 間格提示<br>對工作區內的檔案進行編譯時（不是 GIT 視窗內的變更檢視），若此檔案有被 git 所觀察會額外提供一個小間格為變異上提示。<br><img src="https://i.imgur.com/Ls4Ewhp.gif" alt="mgutter_icons"></li>
+</ul>
+<h1 id="擴充工具-（陸續更新）"><a href="#擴充工具-（陸續更新）" class="headerlink" title="擴充工具 （陸續更新）"></a>擴充工具 （陸續更新）</h1><p>除了直覺快速的介面操作、便利的專案與檔案管理，還有那些海量的擴充模組使用。套件不是一定需要的，每個人都有習慣的環境套件，找到符合自己的套件才是真正屬於自己的環境，以下是我推薦網頁設計師的模組應用。<br><img src="https://i.imgur.com/okdBYKh.png" alt=""></p>
+<h2 id="視覺外觀"><a href="#視覺外觀" class="headerlink" title="視覺外觀"></a>視覺外觀</h2><p>屬於高亮提示或排版自動美化部分，方便在編輯程式碼時減少錯誤的宣告起始頭尾，也利於觀看程式碼能快速看出主體結構。</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer" target="_blank" rel="noopener">Bracket Pair Colorizer</a><br>幫你的{}大括弧上色，會自動對應不同顏色，幫助你輕鬆看準程式區段範圍。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=intellsmi.comment-translate" target="_blank" rel="noopener">Comment Translate</a><br>滑鼠停留在變數、函數或註解能自動 Google 翻譯（可繁體），易用於原作者之註解說明。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mkxml.vscode-filesize" target="_blank" rel="noopener">filesize</a><br>增加資訊於左下角對於檔案空間為多少的輕資訊。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag" target="_blank" rel="noopener">Highlight Matching Tag</a><br>當游標停留在某一個區段或是標籤上，能高亮提示該屬於那些區段範圍或對應的頭尾標籤位置。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow" target="_blank" rel="noopener">indent-rainbow</a><br>協助你排版 (TAB) 的空格填塞淡色背景，能幫助你觀看對齊更方便。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview" target="_blank" rel="noopener">Image preview</a><br>可簡單輕巧提示該圖片預覽並縮圖於行數左側。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank" rel="noopener">Prettier - Code formatter</a><br>對 HTML/CSS/JS 支援自動化 format 排版效果，提升美觀性容易維護。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer" target="_blank" rel="noopener">SVG Viewer</a><br>我們都知道內建支援圖片預覽但不支援 svg 格式，此套件可以補強此需求。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components" target="_blank" rel="noopener">vscode-styled-components</a><br>幫助 JS 跟 CSS 有更高亮的視覺輔助效果</li>
+</ul>
+<h2 id="系統輔助"><a href="#系統輔助" class="headerlink" title="系統輔助"></a>系統輔助</h2><p>一些偏向是偷吃步或省力的自動化修正全都在這裡，主要是加快你打 coding 速度，有些固定動作就由套件幫你完成。</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=KevinYang.ctlorem" target="_blank" rel="noopener">Chinese Lorem</a><br>vscode 預設的快速假文為輸入 lorem，這個是中文版的只要輸入 ctlorem 即可且用法相同。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=nobuhito.printcode" target="_blank" rel="noopener">PrintCode</a><br>將目前的編譯內容進行列印輸出。透過 <kbd>F1</kbd> 輸入 <code>&gt;printcode</code> 觸發。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=auchenberg.vscode-browser-preview" target="_blank" rel="noopener">Browser Preview</a><br>直接讓 VSCODE 扮演簡易瀏覽器，通常適合懶得另外開遊覽器的人，但十分簡易便是了。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener">Live Server</a><br>針對指定的檔案與目錄產生簡易型 Web 伺服器並占用 port:5500，但不支援 PHP。</li>
+<li><del><a href="https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync" target="_blank" rel="noopener">Settings Sync</a><br>透過 github 的 gist 服務，能將多個 VSCODE 環境參數與套件模組進行上下傳同步，需要指定好 github 帳戶 ID 以及快捷鍵操作上下傳更新。</del><blockquote>
+<p>早期都靠此第三方工具，但現在 VSCode 已自己內建提供同步就不需要此擴充了，且更容易復原且自動化，可參考 <a href="https://code.visualstudio.com/docs/editor/settings-sync" target="_blank" rel="noopener">VSCODE 官方手冊</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="程式語言"><a href="#程式語言" class="headerlink" title="程式語言"></a>程式語言</h2><p>收錄網頁開發的程式語言為主，使用某宣告或函式能方便提示語法說明，不必背誦太多語法也能輕鬆找到指定宣告語言。</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag" target="_blank" rel="noopener">Auto Close Tag</a><br>自動幫你的標籤填上結尾標籤，支援 HTML/PHP/JS/VUE…等等，方便加快 coding 速度。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag" target="_blank" rel="noopener">Auto Rename Tag</a><br>當你修改了某標籤，會自動幫你的結尾標籤也一起修改調整。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=JerryHong.autofilename" target="_blank" rel="noopener">AutoFileName</a><br>自動化的檔案名稱連結偵測，提供可用的連結提供選項使用。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense" target="_blank" rel="noopener">Path Intellisense</a><br>自動化的智能連結偵測，提供可用的外部連結提供檔案路徑選項，僅限於 HTML 格式下作用。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yoyoys.fake-img-snippet-collection" target="_blank" rel="noopener">Fake Image Snippet Collection</a><br>可以快速提供線上範例圖片可指定長寬，適用 img/css/md 用途，只要輸入 picsum 即可。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mitchdenny.ecdc" target="_blank" rel="noopener">Encode Decode</a><br>編譯轉換，支援的語法非常多，比較常用的就是將網頁特別符號轉換成 HTML Encode。啟用方式為呼叫命令欄位 <kbd>F1</kbd> 輸入 <code>&gt;Convert Selection</code> 進行工作。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint" target="_blank" rel="noopener">HTMLHint</a><br>提供 HTML 的問題檢查，出現在問題視窗內，適合新手作為輔助調整。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Spades.vs-picgo" target="_blank" rel="noopener">PicGo</a><br>可快速將圖片上傳到指定免圖空間（需設定）並轉換成 MD 圖片語法，透過快速鍵 <kbd>ctrl+alt+u/e/o</kbd>進行觸發。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur" target="_blank" rel="noopener">vscode-imgur</a><br>快速將剪貼簿的內容圖片上傳至 imgur（可指定到個人帳戶），較簡單就能使用透過 <kbd>ctrl+alt+v</kbd> 觸發。</li>
+</ul>
+<h3 id="CSS-Bootstrap-SASS"><a href="#CSS-Bootstrap-SASS" class="headerlink" title="CSS/Bootstrap/SASS"></a>CSS/Bootstrap/SASS</h3><ul>
+<li><del><em><a href="https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion" target="_blank" rel="noopener">IntelliSense for CSS class names in HTML</a><br>會自動搜索你 CSS 樣式表，當你輸入 class=””時，輸入時提示你可用存在的 Class 名</em></del></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=gencer.html-slim-scss-css-class-completion" target="_blank" rel="noopener">SCSS Everywhere</a><br>與前面套件所不同作者之優化設計，比前一個更強大優良的版本且支援更多程式語言。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=thekalinga.bootstrap4-vscode" target="_blank" rel="noopener">Bootstrap 4, Font awesome 4, Font Awesome 5 Free &amp; Pro snippets</a><br>BS 新手推薦，直接輸入關鍵字 fa5（或 fa4) 馬上給你 BS 語法全世界，超好用。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented" target="_blank" rel="noopener">Sass</a><br>使其支援 SASS 自動排版與自動化完成，以及擁有高亮度顯示效果。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus" target="_blank" rel="noopener">language-stylus</a><br>提供 CSS 預處理器 stylus 的高亮與代碼提示工具。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass" target="_blank" rel="noopener">Live Sass Compiler</a><br>提供 CSS 預處理器 Sass/Scss 的即時編譯結果之即時 Web Server，預設產生通訊埠為 4520。</li>
+</ul>
+<h3 id="JS-JQ-VUE"><a href="#JS-JQ-VUE" class="headerlink" title="JS/JQ/VUE"></a>JS/JQ/VUE</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mikey.vscode-fileheader" target="_blank" rel="noopener">vscode-fileheader</a><br>快速鍵 ctrl+ali+i 可產生於頁首/**/之作者註解，也能自訂化。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets" target="_blank" rel="noopener">JavaScript (ES6) code snippets</a><br>JS 相關常用語法的簡碼工具，縮短編譯 JS 的生產時間。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur" target="_blank" rel="noopener">Vetur</a><br>使其支援 Vue 自動排版與自動化完成，以及擁有高亮度顯示效果。</li>
+</ul>
+<h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=docsmsft.docs-markdown" target="_blank" rel="noopener">docs-markdown</a><br>透過 ALT+M 或是<code>F1</code>輸入<code>&gt;docs</code>就能快速生成 MarkDown 標籤，MarkDown 初學者推薦。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one#keyboard-shortcuts" target="_blank" rel="noopener">Markdown All in One</a><br>提供一些常用的快速鍵，方便 Markdown 編寫上手，以及支援預覽效果。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=xlthu.Pangu-Markdown" target="_blank" rel="noopener">Pangu-Markdown</a><br>編寫 MD 文件時能協助格式化，尤其在中英文穿插時表現非常良好，透過右鍵選擇 <code>Pangu Format</code> 觸發。</li>
+</ul>
+<h3 id="PHP-SQL"><a href="#PHP-SQL" class="headerlink" title="PHP/SQL"></a>PHP/SQL</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client" target="_blank" rel="noopener">PHP Intelephense</a><br>自動化的 PHP 代碼偵測，提供可用的函式或格式化整理等選項使用，僅限於 PHP 格式下作用。<blockquote>
+<p><strong>建議關閉 VSCODE 內建的代碼</strong><br>到擴展畫面 -&gt; 搜尋輸入@builtin php -&gt; 停用 PHP Language Features.</p>
+</blockquote>
+</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-intellisense" target="_blank" rel="noopener">PHP IntelliSense</a><br>使 vscode 能支援 php 偵測錯誤與建議函式使用，需要額外設定 setting.json 指定該 php7 位置<figure class="highlight"><figcaption><span>setting.json</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">//for PHP IntelliSense, 讓 vscode 能看懂 php 幫你檢查錯誤或語法建議</span></span><br><span class="line">"php.validate.executablePath": "C:/xampp/php/php.exe",</span><br><span class="line">"php.executablePath": "C:/xampp/php/php.exe",</span><br><span class="line">"php.suggest.basic": false,</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此套件不含 format 功能，需額外安裝 <a href="https://marketplace.visualstudio.com/items?itemName=junstyle.php-cs-fixer" target="_blank" rel="noopener"><code>php cs fixer</code></a></p>
+</blockquote>
+</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.jquerysnippets" target="_blank" rel="noopener">jQuery Code Snippets</a><br>JQ 新手推薦，直接輸入關鍵字 jq 馬上給你 jquery 語法全世界，超好用</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.vscode-mysql" target="_blank" rel="noopener">MySQL</a><br>能直接對 SQL 伺服器連線進行 Command 處理執行操作，但無法勝過 phpmyadmin。</li>
+</ul>
+<h3 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h3><ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph" target="_blank" rel="noopener">Git Graph</a><br>彌補 VSCODE 的 GIT 圖形化工具，對於分支的發展有很大的幫助。在 GIT 功能上多了一個 icon 進行啟用即可呼叫視窗使用。</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github" target="_blank" rel="noopener">GitHub Pull Requests and Issues</a><br>GitHub 的延伸工具。通過此擴展，您可以查看和管理 GitHub 拉取請求和問題。</li>
+</ul>
+<h1 id="參考文獻"><a href="#參考文獻" class="headerlink" title="參考文獻"></a>參考文獻</h1><ul>
+<li><a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks" target="_blank" rel="noopener">Visual Studio Code Tips and Tricks</a></li>
+<li><a href="https://github.com/microsoft/vscode-docs/blob/master/docs/getstarted/tips-and-tricks.md" target="_blank" rel="noopener">microsoft/vscode-docs/docs/getstarted/tips-and-tricks.md</a></li>
+<li><a href="https://github.com/microsoft/vscode-docs/blob/master/docs/editor/codebasics.md#multicursor-modifier" target="_blank" rel="noopener">microsoft/vscode-docs/docs/editor/codebasics.md</a></li>
+<li><a href="https://docs.emmet.io/" target="_blank" rel="noopener">Emmet Documentation</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09-04/article-git/" rel="prev" title="[學習之路] Git 與 GitHub 版本管理工具">
+      <i class="fa fa-chevron-left"></i> [學習之路] Git 與 GitHub 版本管理工具
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          關於本站
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快捷鍵篇"><span class="nav-number">1.</span> <span class="nav-text">快捷鍵篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#General-一般指令"><span class="nav-number">1.1.</span> <span class="nav-text">General 一般指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-editing-基本編輯"><span class="nav-number">1.2.</span> <span class="nav-text">Basic editing 基本編輯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigation-導覽"><span class="nav-number">1.3.</span> <span class="nav-text">Navigation 導覽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-and-replace-搜尋替換"><span class="nav-number">1.4.</span> <span class="nav-text">Search and replace 搜尋替換</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-cursor-and-selection-多重選取"><span class="nav-number">1.5.</span> <span class="nav-text">Multi-cursor and selection 多重選取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rich-languages-editing-語意編輯"><span class="nav-number">1.6.</span> <span class="nav-text">Rich languages editing 語意編輯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Editor-management-編輯視窗管理"><span class="nav-number">1.7.</span> <span class="nav-text">Editor management 編輯視窗管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-management-檔案管理"><span class="nav-number">1.8.</span> <span class="nav-text">File management 檔案管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Display-檢視項目"><span class="nav-number">1.9.</span> <span class="nav-text">Display 檢視項目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug"><span class="nav-number">1.10.</span> <span class="nav-text">Debug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integrated-terminal-終端機"><span class="nav-number">1.11.</span> <span class="nav-text">Integrated terminal 終端機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.12.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Emmet-篇"><span class="nav-number">2.</span> <span class="nav-text">Emmet 篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#語法"><span class="nav-number">2.1.</span> <span class="nav-text">語法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-轉換"><span class="nav-number">2.2.</span> <span class="nav-text">HTML 轉換</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-轉換"><span class="nav-number">2.3.</span> <span class="nav-text">CSS 轉換</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT-篇"><span class="nav-number">3.</span> <span class="nav-text">GIT 篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#擴充工具-（陸續更新）"><span class="nav-number">4.</span> <span class="nav-text">擴充工具 （陸續更新）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#視覺外觀"><span class="nav-number">4.1.</span> <span class="nav-text">視覺外觀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系統輔助"><span class="nav-number">4.2.</span> <span class="nav-text">系統輔助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程式語言"><span class="nav-number">4.3.</span> <span class="nav-text">程式語言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">4.3.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Bootstrap-SASS"><span class="nav-number">4.3.2.</span> <span class="nav-text">CSS&#x2F;Bootstrap&#x2F;SASS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-JQ-VUE"><span class="nav-number">4.3.3.</span> <span class="nav-text">JS&#x2F;JQ&#x2F;VUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown"><span class="nav-number">4.3.4.</span> <span class="nav-text">Markdown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-SQL"><span class="nav-number">4.3.5.</span> <span class="nav-text">PHP&#x2F;SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GIT"><span class="nav-number">4.3.6.</span> <span class="nav-text">GIT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考文獻"><span class="nav-number">5.</span> <span class="nav-text">參考文獻</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Loki Jiang"
+      src="/images/loki_img.jpg">
+  <p class="site-author-name" itemprop="name">Loki Jiang</p>
+  <div class="site-description" itemprop="description">Time waits for no oneヽ(｀Д´)ﾉ</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/summer10920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;summer10920" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:summer10920@gmail.com" title="E-Mail → mailto:summer10920@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codepen.io/summer10920/pens/public" title="CodePen → https:&#x2F;&#x2F;codepen.io&#x2F;summer10920&#x2F;pens&#x2F;public" rel="noopener" target="_blank"><i class="fa fa-fw fa-codepen"></i>CodePen</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Loki Jiang</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
